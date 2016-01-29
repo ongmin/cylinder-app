@@ -1,0 +1,8 @@
+
+{
+  "name":"cylinder-app",
+  "description":"Video player and chatroom",
+  "scripts":{},
+  "env": {},
+  "addons":[]
+}
