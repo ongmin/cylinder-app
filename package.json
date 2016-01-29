@@ -1,0 +1,28 @@
+{
+  "name": "cylinder-app",
+  "version": "1.0.0",
+  "description": "Video and chat room",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caalberts/cylinder-app.git"
+  },
+  "keywords": [
+    "video",
+    "chat",
+    "react",
+    "socket.io"
+  ],
+  "author": "Albert Salim (@caalberts), Min Ong (@ongmin)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caalberts/cylinder-app/issues"
+  },
+  "homepage": "https://github.com/caalberts/cylinder-app#readme",
+  "devDependencies": {
+    "standard": "^5.4.1"
+  }
+}
