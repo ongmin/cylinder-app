@@ -63,6 +63,7 @@ gulp.task('css', function () {
   gulp.src(config.paths.css)
     .pipe(concat('bundle.css'))
     .pipe(gulp.dest(config.paths.dist))
+    .pipe(connect.reload())
 })
 
 // Migrates images to dist folder

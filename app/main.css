@@ -1,16 +1,25 @@
 body {
-  background: grey;
   color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+}
+
+.headerContainer {
+  display: block;
   width: 100%;
 }
 
 .topbar {
-  background: rgba(255,255,255,0.95);
+  font: 1em Courier, monospace;
+  background: rgba(255,255,255,0.5);
   border: 1px solid black;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  height: 8vh;
 }
 
 a {
@@ -18,11 +27,84 @@ a {
   style: none;
 }
 
-
-.bodyContainer {
-  width: 100%;
+.align-left {
+  float: left;
+  text-align: left;
 }
 
-div.topbar li {
+.align-right {
+  float: right;
+}
+
+.bodyContainer {
+  font: 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: block;
+  width: 100vw;
+  height: 92vh;
+  margin-top: 10vh;
+  text-align: center;
+}
+
+.bodyContainer svg {
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .bodyContainer {
+    width: 100vw;
+    height: 92vh;
+    margin-top: 10vh;
+    text-align: center;
+  }
+}
+
+@media (max-width: 730px) {
+  .bodyContainer {
+    width: 100vw;
+    height: 92vh;
+    margin-top: 10vh;
+    text-align: center;
+  }
+}
+
+div.topbar ul li {
   display: inline;
+  margin-right: 2vh;
+  text-align: center;
+}
+
+.contentContainer {
+  background: grey;
+  text-align: center;
+  padding-top: 20vh;
+  padding-bottom: 30vh;
+}
+
+#tv {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  margin: 10px 0;
+  background: #F5F5F5;
+  border-radius: 50% / 10%;
+  color: white;
+  text-align: center;
+  text-indent: .1em;
+}
+#tv:before {
+  color: black;
+  content: 'Create your room here';
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  right: -5%;
+  left: -5%;
+  background: inherit;
+  border-radius: 5% / 50%;
+}
+
+.channelsContainer {
+  background: pink;
+  height: 100vh;
+  width: 100%;
 }
