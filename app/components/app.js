@@ -9,7 +9,9 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
+        <div className='headerContainer'>
         <Header/>
+        </div>
         <div className='bodyContainer'>
         <RouteHandler/>
         </div>

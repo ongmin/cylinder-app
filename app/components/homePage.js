@@ -7,10 +7,14 @@ var React = require('react')
 var Home = React.createClass({
   render: function () {
     return (
+      <div>
+        <div className='contentContainer'>
+          <div id='tv'></div>
+        </div>
+        <div className='channelsContainer'>
 
-      <div className='container'>
-        <div className='text'>Welcome Home</div>
-      </div>
+        </div>
+    </div>
     )
   }
 })
