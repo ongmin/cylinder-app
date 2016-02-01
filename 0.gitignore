@@ -3,4 +3,6 @@ dist/
 .DS_Store
 *.dist.js
 .log
-coverage/
+
+**/_*
+**/_*/
