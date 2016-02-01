@@ -18,3 +18,7 @@
 - Gemnasium & Greenkeeper
 - Babel
 - Webpack
+
+## Deployment
+
+Deployment on [Heroku](http://cylinder-app.herokuapp.com)
