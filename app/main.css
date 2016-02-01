@@ -1,4 +1,28 @@
 body {
   background: grey;
   color: white;
+  width: 100%;
+}
+
+.topbar {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid black;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+a {
+  text-decoration: none;
+  style: none;
+}
+
+
+.bodyContainer {
+  width: 100%;
+}
+
+div.topbar li {
+  display: inline;
 }
