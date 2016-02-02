@@ -6,6 +6,10 @@ var Link = Router.Link
 var Authenticate = require('./authenticate')
 
 var Header = React.createClass({
+  propTypes: {
+    lock: React.PropTypes.object,
+    idToken: React.PropTypes.string
+  },
   render: function () {
     return (
 

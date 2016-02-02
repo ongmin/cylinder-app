@@ -1,7 +1,11 @@
 var React = require('react')
 
 var Authenticate = React.createClass({
-  getInitialState: function() {
+  propTypes: {
+    lock: React.PropTypes.object,
+    idToken: React.PropTypes.string
+  },
+  getInitialState: function () {
     return {
       profile: null
     }
