@@ -15,9 +15,11 @@ var Header = React.createClass({
     </ul>
   <ul className='align-right'>
     <li><Link to='app'>Home</Link></li>
+    <li><Link to='app'>About</Link></li>
+    <li><Link to='channel'>Channel</Link></li>
     <li><Link to='app'>Login</Link></li>
     <li><Link to='app'>Create Profile</Link></li>
-    <li><Link to='app'>About</Link></li>
+
   </ul>
 </div>
     )
