@@ -48,6 +48,7 @@ var Authenticate = React.createClass({
   logOut: function () {
     window.localStorage.removeItem('userToken')
     // React route to home page
+    this.setState({profile: null})
     this.context.router.transitionTo('/')
   }
 })
