@@ -3,6 +3,7 @@
 var React = require('react')
 var Router = require('react-router')
 var Link = Router.Link
+var Authenticate = require('./authenticate')
 
 var Header = React.createClass({
   render: function () {
@@ -10,15 +11,16 @@ var Header = React.createClass({
 
 <div className='topbar'>
   <Link to='app' className='topbar brand'>Cylinder</Link>
-      <ul className='topbar'>
-        <li><Link to='app'>Home</Link></li>
-        <li><Link to='app'>Login</Link></li>
-        <li><Link to='app'>Create Profile</Link></li>
-        <li><Link to='app'>About</Link></li>
-      </ul>
-      <form className='topbar-form'>
-        <input type='text' className='form-control' placeholder='Search...'></input>
-      </form>
+  <ul className='topbar'>
+    <li><Link to='app'>Home</Link></li>
+    {/* <li><Link to='app'>Login</Link></li> */}
+    {/* }<li><Link to='app'>Create Profile</Link></li> */}
+    <li><Link to='app'>About</Link></li>
+    <Authenticate lock={this.props.lock} idToken={this.props.idToken} />
+  </ul>
+  <form className='topbar-form'>
+    <input type='text' className='form-control' placeholder='Search...'></input>
+  </form>
 </div>
     )
   }
