@@ -4,8 +4,7 @@ var React = require('react')
 // var Router = require('react-router')
 // var Link = Router.Link
 
-// Fake API (for dev only)
-
+// Fake VIDEOS API (for dev only)
 var VIDEOS = [
   {videoId: '8ELbX5CMomE', thumbnail: 'https://i.ytimg.com/vi/8ELbX5CMomE/default.jpg', title: 'Justin Bieber - Sorry (Lyric Video)', artist: 'Justin Bieber'},
   {videoId: 'rYEDA3JcQqw', thumbnail: 'https://i.ytimg.com/vi/rYEDA3JcQqw/default.jpg', title: 'Adele - Rolling in the Deep', artist: 'Adele'},
@@ -80,11 +79,8 @@ var Playlist = React.createClass({
               <SearchBar/>
             </div>
 
-            <div className='container-results'>
             <VideoTable videos={this.props.videos} videos={VIDEOS}/>
-                <ul id='search-result' className='search-result'>
-                </ul>
-            </div>
+
         </div>
     )
   }
