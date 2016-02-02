@@ -6,6 +6,8 @@ body {
   margin: 0 auto;
 }
 
+/* <== Styling: Header ==> */
+
 .headerContainer {
   display: block;
   width: 100%;
@@ -35,6 +37,9 @@ a {
 .align-right {
   float: right;
 }
+
+
+/* <== Styling: Homepage and overall layout ==> */
 
 .bodyContainer {
   font: 1em "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -109,7 +114,11 @@ div.topbar ul li {
   width: 100%;
 }
 
-object {
+
+/* <== Styling: Channels ==> */
+
+/*Styling: for each video item*/
+.object {
     display: block-inline;
     padding: 5px 30px 10px 30px;
     margin: 20px 10px 20px 10px;
@@ -118,4 +127,9 @@ object {
     background-color: white;
     cursor: pointer;
     line-height: 1.4;
+    color: black;
+}
+
+.container-results {
+  display: flex;
 }

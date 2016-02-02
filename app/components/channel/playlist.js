@@ -42,10 +42,10 @@ var VideoItem = React.createClass({
   },
   render: function () {
     return (
-      <object>
-        <td>{this.props.video.title}</td>
-        <td>{this.props.video.artist}</td>
-      </object>
+      <div className='object'>
+        'Title: ' + <td>{this.props.video.title}</td>
+        'Artist: ' + <td>{this.props.video.artist}</td>
+      </div>
 
     )
   }
@@ -61,15 +61,9 @@ var VideoTable = React.createClass({
       items.push(<VideoItem video={video} key={video.title} />)
     })
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Artist</th>
-          </tr>
-        </thead>
-        <tbody>{items}</tbody>
-      </table>
+    <div className='container-results'>
+    {items}
+    </div>
     )
   }
 })
