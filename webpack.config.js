@@ -11,7 +11,7 @@ module.exports = {
       'app',
       'node_modules'
     ],
-    extensions: ['', '.js', '.json', '.jsx']
+    extensions: ['', '.js', '.jsx']
   },
   entry: PATHS.app,
   output: {

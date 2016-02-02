@@ -5,6 +5,9 @@ var Authenticate = React.createClass({
     lock: React.PropTypes.object,
     idToken: React.PropTypes.string
   },
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
   getInitialState: function () {
     return {
       profile: null
@@ -45,6 +48,7 @@ var Authenticate = React.createClass({
   logOut: function () {
     window.localStorage.removeItem('userToken')
     // React route to home page
+    this.context.router.transitionTo('/')
   }
 })
 
