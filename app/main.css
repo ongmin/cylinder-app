@@ -108,3 +108,14 @@ div.topbar ul li {
   height: 100vh;
   width: 100%;
 }
+
+object {
+    display: block-inline;
+    padding: 5px 30px 10px 30px;
+    margin: 20px 10px 20px 10px;
+    border-color: #ccc;
+    box-shadow: 2px 2px 5px #888;
+    background-color: white;
+    cursor: pointer;
+    line-height: 1.4;
+}
