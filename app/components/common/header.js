@@ -14,17 +14,18 @@ var Header = React.createClass({
     return (
 
 <div className='topbar'>
-  <Link to='app' className='topbar brand'>Cylinder</Link>
-  <ul className='topbar'>
+  <ul className='align-left'>
+    <li><Link to='app' id='brand'>Cylinder</Link></li>
+    <li><input type='text' className='searchBar' placeholder='Search...'></input></li>
+    </ul>
+  <ul className='align-right'>
     <li><Link to='app'>Home</Link></li>
+    <li><Link to='app'>About</Link></li>
+    <li><Link to='channel'>Channel</Link></li>
     {/* <li><Link to='app'>Login</Link></li> */}
     {/* }<li><Link to='app'>Create Profile</Link></li> */}
-    <li><Link to='app'>About</Link></li>
     <Authenticate lock={this.props.lock} idToken={this.props.idToken} />
   </ul>
-  <form className='topbar-form'>
-    <input type='text' className='form-control' placeholder='Search...'></input>
-  </form>
 </div>
     )
   }

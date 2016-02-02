@@ -15,7 +15,9 @@ var App = React.createClass({
   render: function () {
     return (
       <div>
+        <div className='headerContainer'>
         <Header lock={this.lock} idToken={this.state.idToken}/>
+        </div>
         <div className='bodyContainer'>
         <RouteHandler/>
         </div>

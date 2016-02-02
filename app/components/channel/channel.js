@@ -8,11 +8,8 @@ var Home = React.createClass({
   render: function () {
     return (
       <div>
-        <div className='contentContainer'>
-          <div id='tv'></div>
-        </div>
         <div className='channelsContainer'>
-
+        <h1>Channel</h1>
         </div>
     </div>
     )

@@ -12,7 +12,8 @@ var routes = (
   <Route name='app' path='/' handler={require('./components/app')}>
     <DefaultRoute handler={require('./components/homePage')} />
     <NotFoundRoute handler={require('./components/notFoundPage')} />
-  </Route>
+    <Route name='channel' path='channel' handler={require('./components/channel/channel')} />
+    </Route>
 )
 
 module.exports = routes
