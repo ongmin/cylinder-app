@@ -39,6 +39,19 @@
   },
   "homepage": "https://github.com/caalberts/cylinder-app#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "codecov.io": "^0.1.6",
+    "enzyme": "^1.4.1",
+    "mocha": "^2.4.5",
+    "mocha-lcov-reporter": "^1.0.0",
+    "nodemon": "^1.8.1",
+    "react-addons-test-utils": "^0.14.7",
+    "standard": "^5.4.1",
+    "supertest": "^1.1.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "auth0-lock": "^8.2.2",
     "babel": "^6.3.26",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
@@ -49,26 +62,11 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-register": "^6.4.3",
-    "chai": "^3.5.0",
-    "codecov.io": "^0.1.6",
-    "css-loader": "^0.23.1",
-    "enzyme": "^1.4.1",
-    "mocha": "^2.4.5",
-    "mocha-lcov-reporter": "^1.0.0",
-    "nodemon": "^1.8.1",
-    "react-addons-test-utils": "^0.14.7",
-    "standard": "^5.4.1",
-    "style-loader": "^0.13.0",
-    "supertest": "^1.1.0",
-    "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "auth0-lock": "^8.2.2",
     "body-parser": "^1.14.2",
     "bootstrap": "^3.3.5",
     "browserify": "^11.0.1",
     "cors": "^2.7.1",
+    "css-loader": "^0.23.1",
     "express": "^4.13.4",
     "express-jwt": "^3.3.0",
     "flux": "^2.0.3",
@@ -87,8 +85,10 @@
     "reactify": "^1.1.1",
     "slug": "^0.9.1",
     "standard": "^5.4.1",
+    "style-loader": "^0.13.0",
     "toastr": "^2.1.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.12.12"
   },
   "standard": {
     "parser": "babel-eslint"
