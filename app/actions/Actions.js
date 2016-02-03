@@ -1,14 +1,24 @@
 'use strict'
 
 var Dispatcher = require('../dispatcher/appDispatcher')
-var AuthorApi = require('../api/authorApi')
+var SearchApi = require('../api/searchApi')
+var ChannelApi = require('../api/channelApi')
 var ActionTypes = require('../constants/actionTypes')
 
-var AuthorActions = {
-  createAuthor: function (author) {
-    var newAuthor = AuthorApi.saveAuthor(author)
+var Actions = {
 
-// Hey dispatcher, go tell all the stores that an author was just created.
+  search: function (keywords) {
+    var newSearch = SearchApi.fetchResults(keywords)
+
+    Dispatcher.disapatch({
+      actionTypes: ActionTypes.GET_RESULTS,
+      results: newSearch
+    })
+  },
+
+  createAuthor: function (author) {
+    var newAuthor = ChannelApi.saveAuthor(author)
+
     Dispatcher.dispatch({
       actionType: ActionTypes.CREATE_AUTHOR,
       author: newAuthor
@@ -16,9 +26,8 @@ var AuthorActions = {
   },
 
   updateAuthor: function (author) {
-    var updatedAuthor = AuthorApi.saveAuthor(author)
+    var updatedAuthor = ChannelApi.saveAuthor(author)
 
-// Hey dispatcher, go tell all the stores that an author was just updated.
     Dispatcher.dispatch({
       actionType: ActionTypes.UPDATE_AUTHOR,
       author: updatedAuthor
@@ -26,9 +35,8 @@ var AuthorActions = {
   },
 
   deleteAuthor: function (id) {
-    AuthorApi.deleteAuthor(id)
+    ChannelApi.deleteAuthor(id)
 
-// Hey dispatcher, go tell all the stores that an author was just deleted.
     Dispatcher.dispatch({
       actionType: ActionTypes.DELETE_AUTHOR,
       id: id
@@ -36,4 +44,4 @@ var AuthorActions = {
   }
 }
 
-module.exports = AuthorActions
+module.exports = Actions

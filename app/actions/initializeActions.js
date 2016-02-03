@@ -2,16 +2,18 @@
 
 var Dispatcher = require('../dispatcher/appDispatcher')
 var ActionTypes = require('../constants/actionTypes')
-var AuthorApi = require('../api/authorApi')
-var UserApi = require('../api/userApi')
+var SearchApi = require('../api/searchApi')
+var ChannelApi = require('../api/channelApi')
+var PlaylistApi = require('../api/playlistApi')
 
 var InitializeActions = {
   initApp: function () {
     Dispatcher.dispatch({
       actionType: ActionTypes.INITIALIZE,
       initialData: {
-        authors: AuthorApi.getAllAuthors(),
-        users: UserApi.getAllUsers()
+        results: SearchApi.fetchResults(),
+        playlist: PlaylistApi.fetchPlaylist(),
+        channels: ChannelApi.fetchChannels()
       }
     })
   }

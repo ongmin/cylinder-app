@@ -6,13 +6,9 @@ var keyMirror = require('fbjs/lib/keyMirror')
 
 module.exports = keyMirror({
   INITIALIZE: null,
-  CREATE_AUTHOR: null,
-  UPDATE_AUTHOR: null,
-  DELETE_AUTHOR: null,
-  CREATE_USER: null,
-  UPDATE_USER: null,
-  DELETE_USER: null,
-  CREATE_POST: null,
-  UPDATE_POST: null,
-  DELETE_POST: null
+  GET_RESULTS: null,
+  CREATE_CHANNEL: null,
+  ADD_VIDEO: null,
+  UPDATE_PLAYLIST: null,
+  DELETE_PLAYLIST: null
 })

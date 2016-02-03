@@ -2,6 +2,7 @@
 
 var React = require('react')
 var debounce = require('debounce')
+var SearchApi = require ('../../api/searchApi')
 
 var SearchBar = React.createClass({
   getInitialState: function () {

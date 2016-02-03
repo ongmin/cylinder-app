@@ -1,15 +1,31 @@
 'use strict'
 
-var Dispatcher = require('../dispatcher/appDispatcher')
-var ActionTypes = require('../constants/actionTypes')
+// var Dispatcher = require('../dispatcher/appDispatcher')
+// var ActionTypes = require('../constants/actionTypes')
 var EventEmitter = require('events').EventEmitter
 var assign = require('object-assign')
-var _ = require('lodash')
+// var _ = require('lodash')
 var CHANGE_EVENT = 'change'
 
-var _authors = []
+var Store = assign({}, EventEmitter.prototype, {
 
-var AuthorStore = assign({}, EventEmitter.prototype, {
+  results: [],
+  playlist: [],
+  channels: [],
+
+// For SearchAPI
+  getInitialData: function () {
+
+  },
+
+  getAllResults: function () {
+    return this.results
+  },
+
+  emitChange: function () {
+    this.emit(CHANGE_EVENT)
+  },
+
   addChangeListener: function (callback) {
     this.on(CHANGE_EVENT, callback)
   },
@@ -18,44 +34,15 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback)
   },
 
-  emitChange: function () {
-    this.emit(CHANGE_EVENT)
+// For PlaylistAPI
+  deleteVideo: function (video) {
+    var idx = this.playlist.indexOf(video)
+    this.playlist.splice(idx, 1)
   },
 
-  getAllAuthors: function () {
-    return _authors
-  },
-
-  getAuthorById: function (id) {
-    return _.find(_authors, {id: id})
+  addNewVideo: function (video) {
+    this.playlist.push(video)
   }
 })
 
-Dispatcher.register(function (action) {
-  switch (action.actionType) {
-    case ActionTypes.INITIALIZE:
-      _authors = action.initialData.authors
-      AuthorStore.emitChange()
-      break
-    case ActionTypes.CREATE_AUTHOR:
-      _authors.push(action.author)
-      AuthorStore.emitChange()
-      break
-    case ActionTypes.UPDATE_AUTHOR:
-      var existingAuthor = _.find(_authors, {id: action.author.id})
-      var existingAuthorIndex = _.indexOf(_authors, existingAuthor)
-      _authors.splice(existingAuthorIndex, 1, action.author)
-      AuthorStore.emitChange()
-      break
-    case ActionTypes.DELETE_AUTHOR:
-      _.remove(_authors, function (author) {
-        return action.id === author.id
-      })
-      AuthorStore.emitChange()
-      break
-    default:
-      // no op
-  }
-})
-
-module.exports = AuthorStore
+module.exports = Store
