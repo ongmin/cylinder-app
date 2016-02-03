@@ -3,8 +3,13 @@
 var React = require('react')
 var Router = require('react-router')
 var Link = Router.Link
+var Authenticate = require('./authenticate')
 
 var Header = React.createClass({
+  propTypes: {
+    lock: React.PropTypes.object,
+    idToken: React.PropTypes.string
+  },
   render: function () {
     return (
 
@@ -17,9 +22,9 @@ var Header = React.createClass({
     <li><Link to='app'>Home</Link></li>
     <li><Link to='app'>About</Link></li>
     <li><Link to='channel'>Channel</Link></li>
-    <li><Link to='app'>Login</Link></li>
-    <li><Link to='app'>Create Profile</Link></li>
-
+    {/* <li><Link to='app'>Login</Link></li> */}
+    {/* }<li><Link to='app'>Create Profile</Link></li> */}
+    <Authenticate lock={this.props.lock} idToken={this.props.idToken} />
   </ul>
 </div>
     )
