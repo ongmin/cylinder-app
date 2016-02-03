@@ -1,12 +1,15 @@
 /* global describe it */
-
-import app from '../../server/app'
 import { expect } from 'chai'
 import request from 'supertest'
 import slug from 'slug'
+import app from './fixture'
+import channels from '../../server/routes/channels'
+
+app.use('/channels', channels)
 
 const NOT_FOUND = 404
 const OK = 200
+const CREATED = 201
 
 let testChannel = {
   name: 'Adele Playlist',
@@ -18,7 +21,7 @@ let testChannel = {
 describe('/GET /channels', function () {
   this.timeout(10000)
   it('should respond with an array of channels', done => {
-    request(app).get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
+    request(app).get('/channels')
       .expect('Content-Type', /json/)
       .expect(OK)
       .expect(res => {
@@ -32,9 +35,9 @@ describe('/POST /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   it('should create a new channel and respond with the object', done => {
-    agent.post('/channels?token=' + process.env.CYLINDER_TEST_JWT).send(testChannel)
+    agent.post('/channels').send(testChannel)
       .expect('Content-Type', /json/)
-      .expect(201)
+      .expect(CREATED)
       .expect(res => {
         for (const prop in testChannel) {
           expect(res.body[prop]).to.eql(testChannel[prop])
@@ -44,7 +47,7 @@ describe('/POST /channels', function () {
       .end(done)
   })
   it('should add new channel to the database', done => {
-    agent.get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
+    agent.get('/channels')
       .expect(res => {
         const newChannel = res.body.find(channel => channel.slug === slug(testChannel.name).toLowerCase())
         expect(newChannel).to.exist
@@ -59,7 +62,7 @@ describe('/POST /channels', function () {
 describe('/GET /channels/:slug', function () {
   this.timeout(10000)
   it('should respond with the channel with the respective slug', done => {
-    request(app).get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
+    request(app).get('/channels')
       .expect('Content-Type', /json/)
       .expect(res => {
         expect(res.body).to.have.length.above(0)
@@ -70,7 +73,7 @@ describe('/GET /channels/:slug', function () {
       .end(done)
   })
   it('should respond with NOT_FOUND if channel slug is not found', done => {
-    request(app).get('/channels/N0nEx1sTenTs1ug?token=' + process.env.CYLINDER_TEST_JWT)
+    request(app).get('/channels/N0nEx1sTenTs1ug')
       .expect(NOT_FOUND)
       .end(done)
   })
@@ -80,9 +83,9 @@ describe('/PUT /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   testChannel.viewers.push('seb')
-  testChannel.playlist.push('some song')
+  testChannel.playlist.push('a song')
   it('should return the updated channel', done => {
-    agent.put('/channels?token=' + process.env.CYLINDER_TEST_JWT)
+    agent.put('/channels')
       .send(Object.assign(
         {},
         testChannel,
@@ -95,7 +98,7 @@ describe('/PUT /channels', function () {
       }).end(done)
   })
   it('should update the channel in the database', done => {
-    agent.get('/channels/' + slug(testChannel.name).toLowerCase() + '?token=' + process.env.CYLINDER_TEST_JWT)
+    agent.get('/channels/' + slug(testChannel.name).toLowerCase())
       .expect(res => {
         for (const prop in testChannel) {
           expect(res.body[0][prop]).to.eql(testChannel[prop])
@@ -108,7 +111,7 @@ describe('/DELETE /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   it('should delete the channel from the database', done => {
-    agent.delete('/channels?token=' + process.env.CYLINDER_TEST_JWT)
+    agent.delete('/channels')
       .send({ slug: slug(testChannel.name).toLowerCase() })
       .expect(OK)
       .end(done)
