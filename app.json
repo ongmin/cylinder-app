@@ -1,11 +1,12 @@
-
 {
-  "name":"cylinder-app",
-  "description":"Video player and chatroom",
-  "scripts":{
+  "name": "cylinder-app",
+  "description": "Video player and chatroom",
+  "scripts": {
   },
   "env": {
+    "CYLINDER_MONGODB_USER": { "required": true },
+    "CYLINDER_MONGODB_PASSWORD": { "required": true },
+    "CYLINDER_MONGODB_URI": { "required": true }
   },
-  "addons":[
-  ]
+  "addons": []
 }
