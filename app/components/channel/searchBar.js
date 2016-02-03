@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var debounce = require('debounce')
 
 var SearchBar = React.createClass({
   getInitialState: function () {
@@ -17,7 +18,7 @@ var SearchBar = React.createClass({
 
   whenUserTypes: function () {
     console.log('type type type')
-    this.fetchResults()
+    debounce(this.fetchResults(), 2000)
   },
 
   fetchResults: function () {

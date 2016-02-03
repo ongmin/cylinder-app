@@ -59,15 +59,9 @@ var Playlist = React.createClass({
   },
   render: function () {
     return (
-        <div id='container-main'>
-            <div>
-              <h1>Playlist</h1>
-              <SearchBar/>
-            </div>
 
             <VideoTable videos={VIDEOS}/>
 
-        </div>
     )
   }
 })
