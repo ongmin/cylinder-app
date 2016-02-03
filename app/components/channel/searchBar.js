@@ -19,8 +19,8 @@ var SearchBar = React.createClass({
     }
   },
 
-  onChange: function (event) {
-    this.setState({text: event.target.value})
+  onChange: function (e) {
+    this.setState({text: e.target.value})
     this.setState(getStateFromStores())
   },
 
@@ -28,8 +28,10 @@ var SearchBar = React.createClass({
     Store.addChangeListener(this.onChange)
   },
 
-  whenUserTypes: function () {
+  whenUserTypes: function (e) {
     console.log('type type type')
+    var text = e.target.value
+    this.setState({text: text})
     debounce(getStateFromStores(), 2000)
   },
 
