@@ -1,13 +1,12 @@
 'use strict'
 
-var React = require('react')
-var Playlist = require('./playlist')
-
+import React from 'react'
+import Playlist from './playlist'
 // var Router = require('react-router')
 // var Link = Router.Link
 
-var Channel = React.createClass({
-  render: function () {
+export default class Channel extends React.Component {
+  render () {
     return (
       <div>
         <div className='channelsContainer'>
@@ -17,6 +16,6 @@ var Channel = React.createClass({
     </div>
     )
   }
-})
+}
 
 module.exports = Channel

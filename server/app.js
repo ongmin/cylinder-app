@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import cors from 'cors'
 // import jwt from 'express-jwt'
 import slug from 'slug'
+import YTSearch from 'youtube-search-api'
 
 const app = express()
 
@@ -12,6 +13,8 @@ const app = express()
   // secret: new Buffer(process.env.EXPRESSAPI_AUTH0_SECRET, 'base64'),
   // audience: process.env.EXPRESSAPI_AUTH0_CLIENTID
 // })
+
+const API_KEY = process.env.CYLINDER_API_KEY
 
 const dbUri = 'mongodb://' +
   process.env.CYLINDER_MONGODB_USER + ':' +
@@ -31,6 +34,12 @@ app.use(express.static('dist'))
 // app.use('/channels', jwtCheck)
 app.use(bodyParser.json())
 app.use(cors())
+
+app.get('/searchresults/:keyword', (req, res) =>
+  YTSearch({ key: API_KEY, term: req.params.keyword, max: '10' }, response => {
+    res.send(response)
+  })
+)
 
 // list all channels
 app.get('/channels', (req, res) => {
