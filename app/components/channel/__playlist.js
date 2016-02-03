@@ -1,6 +1,7 @@
-// /* global $ */
-
+/* global $ */
 'use strict'
+
+global.jQuery = require('jquery')
 
 var React = require('react')
 
@@ -77,6 +78,27 @@ var VideoTable = React.createClass({
 
 var Playlist = React.createClass({
 
+
+  fetchTextInput: function () {
+
+  },
+
+  autocompleteApi: function () {
+    $.ajax({
+      type: 'POST',
+      url: 'http://suggestqueries.google.com/complete/search?hl=en&ds=yt&client=youtube&hjson=t&cp=1',
+      dataType: 'jsonp',
+      data: $.extend({
+        q: request.term
+      }, { }),
+      success: function (data) {
+        this.setState({data: data})
+      }.bind(this),
+      error: function (xhr, status, err) {
+        console.error(status, err.toString())
+      }.bind(this)
+    })
+  },
   getInitialState: function () {
     return {
       videos: [],
@@ -85,6 +107,7 @@ var Playlist = React.createClass({
   },
   componentDidMount: function () {
     this.autocompleteApi()
+    console.log(data)
   },
   render: function () {
     return (
