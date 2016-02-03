@@ -1,7 +1,4 @@
 import mongoose from 'mongoose'
-import dbUri from './uri'
-
-mongoose.connect(dbUri)
 
 export default mongoose.model('Channel', {
   name: String,
