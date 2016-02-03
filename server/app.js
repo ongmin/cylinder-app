@@ -7,8 +7,8 @@ import jwt from 'express-jwt'
 const app = express()
 
 const jwtCheck = jwt({
-  secret: new Buffer(process.env.EXPRESSAPI_AUTH0_SECRET, 'base64'),
-  audience: process.env.EXPRESSAPI_AUTH0_CLIENTID
+  secret: new Buffer(process.env.CYLINDER_AUTH0_SECRET, 'base64'),
+  audience: process.env.CYLINDER_AUTH0_CLIENTID
 })
 
 app.use(express.static('dist'))
