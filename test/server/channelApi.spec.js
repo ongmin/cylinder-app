@@ -18,7 +18,7 @@ let testChannel = {
 describe('/GET /channels', function () {
   this.timeout(10000)
   it('should respond with an array of channels', done => {
-    request(app).get('/channels')
+    request(app).get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
       .expect('Content-Type', /json/)
       .expect(OK)
       .expect(res => {
@@ -32,7 +32,7 @@ describe('/POST /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   it('should create a new channel and respond with the object', done => {
-    agent.post('/channels').send(testChannel)
+    agent.post('/channels?token=' + process.env.CYLINDER_TEST_JWT).send(testChannel)
       .expect('Content-Type', /json/)
       .expect(201)
       .expect(res => {
@@ -44,7 +44,7 @@ describe('/POST /channels', function () {
       .end(done)
   })
   it('should add new channel to the database', done => {
-    agent.get('/channels')
+    agent.get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
       .expect(res => {
         const newChannel = res.body.find(channel => channel.slug === slug(testChannel.name).toLowerCase())
         expect(newChannel).to.exist
@@ -59,7 +59,7 @@ describe('/POST /channels', function () {
 describe('/GET /channels/:slug', function () {
   this.timeout(10000)
   it('should respond with the channel with the respective slug', done => {
-    request(app).get('/channels')
+    request(app).get('/channels?token=' + process.env.CYLINDER_TEST_JWT)
       .expect('Content-Type', /json/)
       .expect(res => {
         expect(res.body).to.have.length.above(0)
@@ -70,7 +70,7 @@ describe('/GET /channels/:slug', function () {
       .end(done)
   })
   it('should respond with NOT_FOUND if channel slug is not found', done => {
-    request(app).get('/channels/N0nEx1sTenTs1ug')
+    request(app).get('/channels/N0nEx1sTenTs1ug?token=' + process.env.CYLINDER_TEST_JWT)
       .expect(NOT_FOUND)
       .end(done)
   })
@@ -82,7 +82,7 @@ describe('/PUT /channels', function () {
   testChannel.viewers.push('seb')
   testChannel.playlist.push('some song')
   it('should return the updated channel', done => {
-    agent.put('/channels')
+    agent.put('/channels?token=' + process.env.CYLINDER_TEST_JWT)
       .send(Object.assign(
         {},
         testChannel,
@@ -95,7 +95,7 @@ describe('/PUT /channels', function () {
       }).end(done)
   })
   it('should update the channel in the database', done => {
-    agent.get('/channels/' + slug(testChannel.name).toLowerCase())
+    agent.get('/channels/' + slug(testChannel.name).toLowerCase() + '?token=' + process.env.CYLINDER_TEST_JWT)
       .expect(res => {
         for (const prop in testChannel) {
           expect(res.body[0][prop]).to.eql(testChannel[prop])
@@ -108,7 +108,7 @@ describe('/DELETE /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   it('should delete the channel from the database', done => {
-    agent.delete('/channels')
+    agent.delete('/channels?token=' + process.env.CYLINDER_TEST_JWT)
       .send({ slug: slug(testChannel.name).toLowerCase() })
       .expect(OK)
       .end(done)
