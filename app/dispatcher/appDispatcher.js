@@ -16,7 +16,7 @@ var AppDispatcher = new Dispatcher()
 var Store = require('../stores/store')
 var ActionTypes = require('../constants/actionTypes')
 
-Dispatcher.register(function (action) {
+AppDispatcher.register(function (action) {
   switch (action.actionType) {
 
 // For SearchAPI

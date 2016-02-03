@@ -60,9 +60,9 @@ var Playlist = React.createClass({
       data: []
     }
   },
-  componentDidMount: function () {
-    this.autocompleteApi()
-  },
+  // componentDidMount: function () {
+  //   this.autocompleteApi()
+  // },
   render: function () {
     return (
 

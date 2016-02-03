@@ -9,7 +9,7 @@ var NotFoundRoute = Router.NotFoundRoute
 // var Redirect = Router.Redirect
 
 var routes = (
-  <Route name='app' path='/' handler={require('./components/appController')}>
+  <Route name='app' path='/' handler={require('./components/app')}>
     <DefaultRoute handler={require('./components/homePage')} />
     <NotFoundRoute handler={require('./components/notFoundPage')} />
     <Route name='channel' path='channel' handler={require('./components/channel/channel')} />

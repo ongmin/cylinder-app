@@ -14,7 +14,7 @@ var SearchApi = {
       return response.json()
     }).then((data) => {
       results = data
-      console.log(data)
+      console.log('omg this works' + data)
     })
   },
 
@@ -26,11 +26,6 @@ var SearchApi = {
     var video = _.find(results, {id: id})
     return _clone(video)
   }
-
 }
 
 module.exports = SearchApi
-
-
-// var searchTerm = document.getElementById('#search-bar').value.toLowerCase()
-// console.log('search-term: ' + searchTerm)

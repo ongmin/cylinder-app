@@ -4,6 +4,8 @@
 // var ActionTypes = require('../constants/actionTypes')
 var EventEmitter = require('events').EventEmitter
 var assign = require('object-assign')
+// var ChannelUtils = require('../utils/ChannelUtils');
+
 // var _ = require('lodash')
 var CHANGE_EVENT = 'change'
 
@@ -14,9 +16,9 @@ var Store = assign({}, EventEmitter.prototype, {
   channels: [],
 
 // For SearchAPI
-  getInitialData: function () {
-
-  },
+  // getInitialData: function () {
+  //
+  // },
 
   getAllResults: function () {
     return this.results
@@ -42,6 +44,15 @@ var Store = assign({}, EventEmitter.prototype, {
 
   addNewVideo: function (video) {
     this.playlist.push(video)
+  },
+
+// For ChannelAPI
+  createChannel: function (name, slug, owner, viewers, playlist) {
+    name = name
+    slug = slug
+    owner = owner
+    viewers = []
+    playlist = []
   }
 })
 

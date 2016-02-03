@@ -3,32 +3,34 @@
 var React = require('react')
 var debounce = require('debounce')
 var SearchApi = require ('../../api/searchApi')
+var Store = require('../../stores/store')
+
+function getStateFromStores () {
+  return {
+    results: Store.getAllResults()
+  }
+}
 
 var SearchBar = React.createClass({
   getInitialState: function () {
-    return {results: [], text: 'cat'}
+    return {
+      results: Store.getAllResults(),
+      text: 'cat'
+    }
   },
 
-  onChange: function (e) {
-    this.setState({text: e.target.value})
+  onChange: function (event) {
+    this.setState({text: event.target.value})
+    this.setState(getStateFromStores())
   },
 
   componentDidMount: function () {
-    this.fetchResults()
+    Store.addChangeListener(this.onChange)
   },
 
   whenUserTypes: function () {
     console.log('type type type')
-    debounce(this.fetchResults(), 2000)
-  },
-
-  fetchResults: function () {
-    window.fetch('/searchresults/' + this.state.text).then((response) => {
-      return response.json()
-    }).then((data) => {
-      console.log(data)
-      this.setState({ results: data })
-    })
+    debounce(getStateFromStores(), 2000)
   },
 
   handleSubmit: function (e) {
@@ -65,3 +67,7 @@ var SearchBar = React.createClass({
 })
 
 module.exports = SearchBar
+
+  // getInitialState: function () {
+  //   return {results: [], text: 'cat'}
+  // },
