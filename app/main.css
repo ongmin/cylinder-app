@@ -177,7 +177,7 @@ div.topbar ul li {
 }
 
 .object:hover .videoitem-title {
-  font-size: 1em;
+  font-size: 0.9em;
   color: white;
   position: absolute;
   bottom: 1px;
