@@ -22,11 +22,9 @@ var Header = React.createClass({
     </ul>
   <ul className='align-right'>
     <li><Link to='app'>Home</Link></li>
-    <li><Link to='app'>About</Link></li>
+    <li><Link to='about'>About</Link></li>
     <li><Link to='channel'>Channel</Link></li>
-    {/* <li><Link to='app'>Login</Link></li> */}
-    {/* }<li><Link to='app'>Create Profile</Link></li> */}
-    <Authenticate lock={this.props.lock} idToken={this.props.idToken} profile={this.props.profile} logOut={this.props.logOut} />
+    <li><Authenticate className='button-loginout' lock={this.props.lock} idToken={this.props.idToken} profile={this.props.profile} logOut={this.props.logOut} /></li>
   </ul>
 </div>
     )
