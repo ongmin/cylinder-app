@@ -14,7 +14,8 @@ var SearchApi = {
       return response.json()
     }).then((data) => {
       results = data
-      console.log('omg this works' + data)
+      console.log('omg this works')
+      console.dir(results)
     })
   },
 

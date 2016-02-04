@@ -6,7 +6,6 @@ var Action = ('../../actions/Actions')
 // var SearchApi = require ('../../api/searchApi')
 var Store = require('../../stores/store')
 
-
 var SearchBar = React.createClass({
 
   updateStateFromStores: function (keywords) {
@@ -21,8 +20,9 @@ var SearchBar = React.createClass({
   },
 
   onChange: function (e) {
-    this.setState({text: e.target.value})
-    this.setState(Store.getAllResults())
+    // this.setState({text: e.target.value})
+    this.setState({results: Store.getAllResults()})
+    console.log('this.state.results:', this.state.results)
   },
 
   componentDidMount: function () {
@@ -30,10 +30,10 @@ var SearchBar = React.createClass({
   },
 
   whenUserTypes: function (e) {
-    console.log('type type type')
+    console.log('type type type', e.target.value)
     var text = e.target.value
     this.setState({text: text})
-    debounce(Store.getAllResults(), 2000)
+    Store.fetchResults(text).then(data => this.setState({results: data}))
   },
 
   handleSubmit: function (e) {
@@ -45,6 +45,7 @@ var SearchBar = React.createClass({
 
   render: function () {
     return (
+      <div>
       <form
         action=''
         method='post'
@@ -55,8 +56,8 @@ var SearchBar = React.createClass({
           id='search-bar'
           placeholder='Search for videos..'
           ref='searchTextInput'
-          onChange={this.onChange}
-          onInput={this.whenUserTypes}
+
+          onChange={this.whenUserTypes}
           value={this.state.text} />
 
         <button
@@ -66,7 +67,20 @@ var SearchBar = React.createClass({
           onClick={this.updateStateFromStores}>Search</button>
 
         </form>
+      <SearchResult results={this.state.results} />
+      </div>
       )
+  }
+})
+
+var SearchResult = React.createClass({
+  render: function () {
+    const videosDOM = this.props.results.map(result => {
+      return <div>{result.snippet.title}</div>
+    })
+    return (
+      <div className='videoResult'>{videosDOM}</div>
+    )
   }
 })
 

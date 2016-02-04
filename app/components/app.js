@@ -59,7 +59,7 @@ var App = React.createClass({
     return (
       <div>
         <div className='headerContainer'>
-        <Header lock={this.lock} idToken={this.state.idToken} profile={this.state.profile} />
+        <Header lock={this.lock} idToken={this.state.idToken} profile={this.state.profile} logOut={this.logOut.bind(this)}/>
         </div>
         <div className='bodyContainer'>
         <RouteHandler/>
@@ -82,6 +82,16 @@ var App = React.createClass({
       }
     }
     return idToken
+  },
+
+  getUser: function () {
+
+  },
+  logOut: function () {
+    window.localStorage.removeItem('userToken')
+    // React route to home page
+    this.setState({profile: null})
+    this.context.router.transitionTo('/')
   }
 })
 

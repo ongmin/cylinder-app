@@ -20,7 +20,19 @@ var Store = assign({}, EventEmitter.prototype, {
   //
   // },
 
-  getAllResults: function () {
+  fetchResults: function (keywords) {
+    return window.fetch('/searchresults/' + keywords)
+      .then(res => res.json())
+      .then((data) => {
+        this.results = data
+        return data
+        // console.log(this.results)
+    })
+  },
+
+  getAllResults: function (text) {
+    // console.log(this.results)
+    // return this.fetchResults(text).then()
     return this.results
   },
 
