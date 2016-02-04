@@ -37,22 +37,25 @@ export default class Channel extends React.Component {
       playerVars: { autoplay: 1 }
     }
     return (
-      <div>
         <div className='channelsContainer'>
-        <h1>Channel</h1>
-          <div id='container-main'>
-              <div>
-                <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
-              </div>
+          <div id='container-top'>
+            <div id='container-main'>
+              <h1>Channel</h1>
+              <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
+            </div>
+
+            <div id='container-rightside'>
+              <button id='toggleButton' onClick={this.onClick.bind(this)}>BUTTON</button>
+              { this.state.childVisible ? <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} /> : null }
+            </div>
+        </div>
+
+          <div id='container-bottom'>
               <h1>Playlist</h1>
-                <button id='toggleButton' onClick={this.onClick.bind(this)}>BUTTON</button>
-                { this.state.childVisible ? <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} /> : null }
               <Playlist playlist={this.state.playlist} playVideo={this.playVideo.bind(this)} />
           </div>
 
-
       </div>
-    </div>
     )
   }
 }

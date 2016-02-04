@@ -148,19 +148,41 @@ div.topbar ul li {
 
 .channelsContainer {
   background: pink;
-  height: 100%;
+  height: 90%;
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
-/*#container-main {
-  display: block;
+/*Styling for layout of Channels Page*/
+
+#container-top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+#container-main {
+  display: inline;
+  width: 80%;
+  height: 100%;
 }
 
 #container-rightside {
-  display: block;
-}*/
+  display: inline;
+  width: 15vw;
+  min-width: 100px;
+  background-color: #B8B8B8;
+  position: absolute;
+  right: 0px;
+}
 
+#container-bottom {
+  width: 100%;
+  background-color: yellow;
+  position: absolute;
+  bottom: 0px
+}
 
 /*<== Styling: TV Screen CSS ==> */
 
@@ -226,22 +248,25 @@ div.topbar ul li {
 #playlist-container {
   display: flex;
   width: 100%;
+  flex-direction: column;
   justify-content: space-around;
   background: #363636;
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 
 .playlist-object {
-    display: inline;
+    display: block;
     margin: 20px 10px 20px 10px;
     border-color: #ccc;
     box-shadow: 2px 2px 5px #888;
     background-color: white;
     cursor: pointer;
     color: black;
-    width: 8%;
+    width: 10%;
     min-width: 100px;
+    align-self: center;
 }
-
 
 .playlist-object:hover .playlist-videoitem-title {
   font-size: 0.5em;
@@ -366,3 +391,87 @@ p {
   width: 100%;
   height: 100%;
 }
+
+
+
+/*NOTEBOOK CODE NOT IN USE*/
+/*
+#playlist-searchBar {
+  margin-bottom: 3%;
+}
+
+#playlist-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background: #363636;
+}
+
+.playlist-object {
+    display: block;
+    margin: 20px 10px 20px 10px;
+    border-color: #ccc;
+    box-shadow: 2px 2px 5px #888;
+    background-color: white;
+    cursor: pointer;
+    color: black;
+    width: 8%;
+    min-width: 100px;
+}
+
+
+.playlist-object:hover .playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 1px;
+  right: 0px;
+  text-align: right;
+  width: 100%;
+  background-color: rgba(184,184,184,0.5);
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: block;
+}
+
+.playlist-object-imgbox {
+  position: relative;
+}
+
+.playlist-videoitem-img-responsive {
+  object-fit: fill;
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  top: 0.2em;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: none;
+}
+
+.playlist-object-textbox {
+  position: relative;
+  display: flex;
+}
+
+.playlist-videoitem-channel-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: block;
+}*/
