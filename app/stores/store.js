@@ -15,6 +15,8 @@ var Store = assign({}, EventEmitter.prototype, {
   results: [],
   playlist: [],
   channels: [],
+  currentVideo: null,
+  nextVideo: null,
 
   lock: new Auth0Lock('gm22xoo58OOcB8qLEkg6dcohb6vzQnZo', 'caalberts.auth0.com'),
   token: null,
@@ -36,8 +38,14 @@ var Store = assign({}, EventEmitter.prototype, {
   addVideo: function (video) {
     this.playlist.push(video)
   },
-  getPlaylist: function () {
-    return this.playlist
+  playVideo: function (video) {
+    this.currentVideo = video
+    this.nextVideo = this.playlist[this.playlist.indexOf(video) + 1]
+  },
+  playNext: function () {
+    this.removeVideo(this.currentVideo)
+    this.currentVideo = this.nextVideo
+    this.nextVideo = this.playlist[this.playlist.indexOf(this.currentVideo) + 1]
   },
   removeVideo: function (video) {
     var idx = this.playlist.indexOf(video)
@@ -79,9 +87,6 @@ var Store = assign({}, EventEmitter.prototype, {
         responseType: 'token'
       })
     }
-  },
-  getUser: function () {
-    return this.user
   },
   logout: function () {
     this.user = null

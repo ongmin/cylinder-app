@@ -10,7 +10,8 @@ var VideoItem = React.createClass({
   },
 
   handleClick: function (e) {
-    this.props.playVideo(this.props.video.id.videoId)
+    // this.props.playVideo(this.props.video.id.videoId)
+    Actions.playVideo(this.props.video)
   },
 
   removeVideo: function (e) {
@@ -44,7 +45,7 @@ var VideoTable = React.createClass({
   render: function () {
     var items = []
     this.props.videos.forEach((video) => {
-      items.push(<VideoItem video={video} key={video.snippet.title} playVideo={this.props.playVideo} />)
+      items.push(<VideoItem video={video} key={video.snippet.title} />)
     })
     return (
     <div className='container-results'>
@@ -62,7 +63,7 @@ var Playlist = React.createClass({
 
   render: function () {
     return (
-      <VideoTable videos={this.props.playlist} playVideo={this.props.playVideo}/>
+      <VideoTable videos={this.props.playlist} />
     )
   }
 })

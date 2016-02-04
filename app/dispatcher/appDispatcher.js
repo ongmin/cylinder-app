@@ -35,6 +35,15 @@ AppDispatcher.register(function (action) {
       Store.addVideo(action.video)
       Store.emitChange()
       break
+    case ActionTypes.PLAY_VIDEO:
+      Store.playVideo(action.video)
+      Store.emitChange()
+      break
+    case ActionTypes.PLAY_NEXT:
+      Store.playNext()
+      Store.emitChange()
+      break
+
     case ActionTypes.REMOVE_VIDEO:
       Store.removeVideo(action.video)
       Store.emitChange()

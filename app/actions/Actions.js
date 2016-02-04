@@ -20,6 +20,17 @@ var Actions = {
       video: video
     })
   },
+  playVideo: function (video) {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.PLAY_VIDEO,
+      video: video
+    })
+  },
+  playNext: function () {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.PLAY_NEXT
+    })
+  },
   removeVideo: function (video) {
     Dispatcher.dispatch({
       actionType: ActionTypes.REMOVE_VIDEO,

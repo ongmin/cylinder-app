@@ -9,14 +9,14 @@ var RouteHandler = require('react-router').RouteHandler
 var App = React.createClass({
   getInitialState: function () {
     return {
-      profile: Store.getUser(),
+      profile: Store.user,
       idToken: Store.parseToken()
     }
   },
 
   onChange: function () {
     this.setState({
-      profile: Store.getUser(),
+      profile: Store.user,
       idToken: Store.getToken()
     })
   },

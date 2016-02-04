@@ -5,6 +5,7 @@ import Youtube from 'react-youtube'
 import Playlist from './playlist'
 import SearchBar from './searchBar'
 import Store from '../../stores/store'
+import Actions from '../../actions/Actions'
 
 // var Router = require('react-router')
 // var Link = Router.Link
@@ -13,22 +14,26 @@ export default class Channel extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      playlist: Store.getPlaylist(),
-      currentVideoId: '',
+      playlist: Store.playlist,
+      currentVideo: '',
       childVisible: true
     }
   }
 
-  playVideo (id) {
-    this.setState({ currentVideoId: id })
-  }
+  // playVideo (id) {
+  //   this.setState({ currentVideo: id })
+  // }
 
   onClick () {
     this.setState({childVisible: !this.state.childVisible})
   }
 
   onChange () {
-    this.setState({playlist: Store.getPlaylist()})
+    this.setState({
+      playlist: Store.playlist,
+      currentVideo: Store.currentVideo,
+      nextVideo: Store.nextVideo
+    })
   }
 
   componentDidMount () {
@@ -48,7 +53,10 @@ export default class Channel extends React.Component {
           <div id='container-top'>
             <div id='container-main'>
               <h1>Channel</h1>
-              <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
+              <Youtube
+                videoId={this.state.currentVideo ? this.state.currentVideo.id.videoId : ''}
+                onEnd={this.state.nextVideo ? Actions.playNext : null}
+                opts={playerOpts} />
             </div>
 
             <div id='container-rightside'>
@@ -59,7 +67,7 @@ export default class Channel extends React.Component {
 
           <div id='container-bottom'>
               <h1>Playlist</h1>
-              <Playlist playlist={this.state.playlist} playVideo={::this.playVideo} />
+              <Playlist playlist={this.state.playlist} />
           </div>
 
       </div>
