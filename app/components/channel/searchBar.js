@@ -45,7 +45,8 @@ var SearchBar = React.createClass({
   render: function () {
     return (
       <div>
-      <form
+      <p id='text-searchresult'>Search for videos</p>
+      <form id='container-search'
         action=''
         method='post'
         id='search-form'
@@ -64,8 +65,8 @@ var SearchBar = React.createClass({
           id='search-button'
           value='Search'
           onClick={this.updateStateFromStores}>Search</button>
-
         </form>
+
       <SearchResult results={this.state.results} addToPlaylist={this.props.addToPlaylist} />
       </div>
       )

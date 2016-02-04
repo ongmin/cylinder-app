@@ -22,7 +22,7 @@ var SearchResult = React.createClass({
     })
 
     return (
-      <div className='videoResult' id='playlist-container'><p id='text-searchresult'>Search Results:</p>{videosDOM}</div>
+      <div className='videoResult' id='playlist-container'>{videosDOM}</div>
     )
   },
 
