@@ -74,7 +74,10 @@ var Store = assign({}, EventEmitter.prototype, {
         }
       })
     } else {
-      this.lock.show()
+      this.lock.show({
+        callbackURL: window.location.origin,
+        responseType: 'token'
+      })
     }
   },
   getUser: function () {
