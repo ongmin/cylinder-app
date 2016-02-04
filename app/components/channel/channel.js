@@ -42,13 +42,13 @@ export default class Channel extends React.Component {
             <div id='container-main'>
               <h1>Channel</h1>
               <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
+                <button id='toggleButton-float' onClick={this.onClick.bind(this)}><i className='fa fa-plus'></i></button>
             </div>
-
-            <div id='container-rightside'>
-              <button id='toggleButton-float' onClick={this.onClick.bind(this)}>BUTTON</button>
-              { this.state.childVisible ? <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} /> : null }
-            </div>
-        </div>
+              { this.state.childVisible
+                ? <div id='container-rightside'>
+                <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} />
+                </div> : null }
+          </div>
 
           <div id='container-bottom'>
               <h1>Playlist</h1>

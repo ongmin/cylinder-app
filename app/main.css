@@ -105,13 +105,17 @@ div.topbar ul li {
   text-align: center;
 }
 
+.homePageContainer {
+  position: relative;
+  top:
+}
+
 .contentContainer {
   background: white;
   text-align: center;
-  padding-top: 20vh;
-  padding-bottom: 30vh;
-  display: flex;
   align-content: center;
+  padding-top: 12vh;
+  margin-bottom: 10vh;
 }
 
 #addChannel {
@@ -164,7 +168,8 @@ div.topbar ul li {
 
 #container-main {
   display: inline;
-  width: 80%;
+  width: 85vw;
+  min-width: 80%;
   height: 100%;
 }
 
@@ -242,9 +247,15 @@ div.topbar ul li {
 /*Styling: Search Results*/
 
 #toggleButton-float {
+  padding: 5px 10px 5px 10px;
   position: absolute;
-  right: 0px;
-  top: 20vh;
+  right: 22vw;
+  top: 12vh;
+  border-radius: 50px;
+  font-size: 2em;
+  border: 1px solid black;;
+  background-color: #ffc444;
+  box-shadow: 2px 2px 5px #888;
 }
 
 #playlist-searchBar {
