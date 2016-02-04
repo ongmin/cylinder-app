@@ -1,33 +1,26 @@
-// /* global $ */
-
 'use strict'
 
 var React = require('react')
-var SearchBar = require('./searchBar')
-
-// var Router = require('react-router')
-// var Link = Router.Link
-
-// Fake VIDEOS API (for dev only)
-var VIDEOS = [
-  {videoId: '8ELbX5CMomE', thumbnail: 'https://i.ytimg.com/vi/8ELbX5CMomE/default.jpg', title: 'Justin Bieber - Sorry (Lyric Video)', artist: 'Justin Bieber'},
-  {videoId: 'rYEDA3JcQqw', thumbnail: 'https://i.ytimg.com/vi/rYEDA3JcQqw/default.jpg', title: 'Adele - Rolling in the Deep', artist: 'Adele'},
-  {videoId: 'Ri7-vnrJD3k', thumbnail: 'https://i.ytimg.com/vi/Ri7-vnrJD3k/default.jpg', title: 'Adele - Set Fire To The Rain (Live at The Royal Albert Hall)', artist: 'Adele'}
-]
 
 var VideoItem = React.createClass({
   propTypes: {
-    video: React.PropTypes.object
+    video: React.PropTypes.object,
+    playVideo: React.PropTypes.func
   },
+
+  handleClick: function (e) {
+    this.props.playVideo(this.props.video.id.videoId)
+  },
+
   render: function () {
     return (
-      <div className='object'>
+      <div className='object' onClick={this.handleClick} >
         <div className='object-imgbox'>
-          <img src={this.props.video.thumbnail} alt='boohoo' className='videoitem-img-responsive'/>
-          <p className='videoitem-title'>{this.props.video.title}</p>
+          <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
+          <p className='videoitem-title'>{this.props.video.snippet.title}</p>
         </div>
         <div className='object-textbox'>
-          <p className='videoitem-artist'>{this.props.video.artist}</p>
+          <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
         </div>
       </div>
 
@@ -37,12 +30,14 @@ var VideoItem = React.createClass({
 
 var VideoTable = React.createClass({
   propTypes: {
-    videos: React.PropTypes.array.isRequired
+    videos: React.PropTypes.array.isRequired,
+    playVideo: React.PropTypes.func
   },
+
   render: function () {
     var items = []
-    this.props.videos.forEach(function (video) {
-      items.push(<VideoItem video={video} key={video.title} />)
+    this.props.videos.forEach((video) => {
+      items.push(<VideoItem video={video} key={video.snippet.title} playVideo={this.props.playVideo} />)
     })
     return (
     <div className='container-results'>
@@ -53,6 +48,10 @@ var VideoTable = React.createClass({
 })
 
 var Playlist = React.createClass({
+  propTypes: {
+    playlist: React.PropTypes.array.isRequired,
+    playVideo: React.PropTypes.func
+  },
 
   getInitialState: function () {
     return {
@@ -60,14 +59,10 @@ var Playlist = React.createClass({
       data: []
     }
   },
-  // componentDidMount: function () {
-  //   this.autocompleteApi()
-  // },
+
   render: function () {
     return (
-
-            <VideoTable videos={VIDEOS}/>
-
+      <VideoTable videos={this.props.playlist} playVideo={this.props.playVideo}/>
     )
   }
 })
