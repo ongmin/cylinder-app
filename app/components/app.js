@@ -2,6 +2,7 @@
 /* global Auth0Lock */
 
 var React = require('react')
+var app = require('./app')
 var Header = require('./common/header')
 // var Sidebar = require('./common/sidebar')
 var RouteHandler = require('react-router').RouteHandler

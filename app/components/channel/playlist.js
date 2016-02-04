@@ -1,9 +1,9 @@
+// /* global $ */
+
 'use strict'
 
-global.jQuery = require('jquery')
-require('./searchResult')
-
 var React = require('react')
+var SearchBar = require('./searchBar')
 
 // var Router = require('react-router')
 // var Link = Router.Link
@@ -14,30 +14,6 @@ var VIDEOS = [
   {videoId: 'rYEDA3JcQqw', thumbnail: 'https://i.ytimg.com/vi/rYEDA3JcQqw/default.jpg', title: 'Adele - Rolling in the Deep', artist: 'Adele'},
   {videoId: 'Ri7-vnrJD3k', thumbnail: 'https://i.ytimg.com/vi/Ri7-vnrJD3k/default.jpg', title: 'Adele - Set Fire To The Rain (Live at The Royal Albert Hall)', artist: 'Adele'}
 ]
-
-var SearchBar = React.createClass({
-  render: function () {
-    return (
-      <form
-        action=''
-        method='post'
-        id='search-form'>
-
-        <input
-          type='text'
-          id='search-bar'
-          placeholder='Search for videos..'
-          ref='searchTextInput' />
-
-        <button
-          className='icon'
-          id='search-button'
-          value='Search'>Search</button>
-
-      </form>
-    )
-  }
-})
 
 var VideoItem = React.createClass({
   propTypes: {
@@ -77,20 +53,21 @@ var VideoTable = React.createClass({
 })
 
 var Playlist = React.createClass({
+
   getInitialState: function () {
-    return {videos: []}
+    return {
+      videos: [],
+      data: []
+    }
   },
+  // componentDidMount: function () {
+  //   this.autocompleteApi()
+  // },
   render: function () {
     return (
-        <div id='container-main'>
-            <div>
-              <h1>Playlist</h1>
-              <SearchBar/>
-            </div>
 
             <VideoTable videos={VIDEOS}/>
 
-        </div>
     )
   }
 })
