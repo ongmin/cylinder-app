@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var dragula = require('react-dragula')
 
 var VideoItem = React.createClass({
   propTypes: {
@@ -32,6 +33,11 @@ var VideoTable = React.createClass({
   propTypes: {
     videos: React.PropTypes.array.isRequired,
     playVideo: React.PropTypes.func
+  },
+
+  componentDidMount: function () {
+    var container = React.findDOMNode(this)
+    dragula([container])
   },
 
   render: function () {
