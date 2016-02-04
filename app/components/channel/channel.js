@@ -13,7 +13,8 @@ export default class Channel extends React.Component {
     super(props)
     this.state = {
       playlist: [],
-      currentVideoId: null
+      currentVideoId: null,
+      childVisible: true
     }
   }
 
@@ -26,6 +27,11 @@ export default class Channel extends React.Component {
     this.setState({ currentVideoId: id })
   }
 
+  onClick () {
+    // console.log(this.state.childVisible)
+    this.setState({childVisible: !this.state.childVisible})
+  }
+
   render () {
     const playerOpts = {
       playerVars: { autoplay: 1 }
@@ -36,12 +42,15 @@ export default class Channel extends React.Component {
         <h1>Channel</h1>
           <div id='container-main'>
               <div>
-                <h1>Playlist</h1>
-                <SearchBar addToPlaylist={this.addToPlaylist.bind(this)} />
+                <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
               </div>
+              <h1>Playlist</h1>
+                <button id='toggleButton' onClick={this.onClick.bind(this)}>BUTTON</button>
+                { this.state.childVisible ? <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} /> : null }
               <Playlist playlist={this.state.playlist} playVideo={this.playVideo.bind(this)} />
-              <Youtube videoId={this.state.currentVideoId} opts={playerOpts} />
           </div>
+
+
       </div>
     </div>
     )
