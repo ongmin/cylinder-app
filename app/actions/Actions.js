@@ -20,11 +20,22 @@ var Actions = {
       video: video
     })
   },
-
   removeVideo: function (video) {
     Dispatcher.dispatch({
       actionType: ActionTypes.REMOVE_VIDEO,
       video: video
+    })
+  },
+
+  login: function (token) {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.LOGIN,
+      token: token
+    })
+  },
+  logout: function () {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.LOGOUT
     })
   },
 

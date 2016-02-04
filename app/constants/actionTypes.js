@@ -11,5 +11,7 @@ module.exports = keyMirror({
   ADD_VIDEO: null,
   REMOVE_VIDEO: null,
   UPDATE_PLAYLIST: null,
-  DELETE_PLAYLIST: null
+  DELETE_PLAYLIST: null,
+  LOGIN: null,
+  LOGOUT: null
 })

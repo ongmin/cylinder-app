@@ -25,18 +25,28 @@ AppDispatcher.register(function (action) {
     //   Store.emitChange()
     //   break
 
+    // For Youtube search
     case ActionTypes.FETCH_RESULTS:
       Store.fetchResults(action.text)
       break
 
-// For PlaylistAPI
+    // For Playlist
     case ActionTypes.ADD_VIDEO:
       Store.addVideo(action.video)
       Store.emitChange()
       break
-
     case ActionTypes.REMOVE_VIDEO:
       Store.removeVideo(action.video)
+      Store.emitChange()
+      break
+
+    // For authentication
+    case ActionTypes.LOGIN:
+      Store.login(action.token)
+      Store.emitChange()
+      break
+    case ActionTypes.LOGOUT:
+      Store.logout()
       Store.emitChange()
       break
 
@@ -44,8 +54,6 @@ AppDispatcher.register(function (action) {
       channels.push(action.name)
       Store.emitChange()
       break
-
-
 
     case ActionTypes.UPDATE_PLAYLIST:
       var existingVideo = _.find(results, {id: action.video.id})
