@@ -12,16 +12,16 @@ var Actions = {
 
     Dispatcher.disapatch({
       actionTypes: ActionTypes.GET_RESULTS,
-      results: newSearch
+      text: keywords
     })
   },
 
-  createAuthor: function (author) {
-    var newAuthor = ChannelApi.saveAuthor(author)
+  createChannel: function (channel) {
+    var newChannel = ChannelApi.saveAuthor(channel)
 
     Dispatcher.dispatch({
-      actionType: ActionTypes.CREATE_AUTHOR,
-      author: newAuthor
+      actionType: ActionTypes.CHANNEL,
+      channel: newChannel
     })
   },
 
