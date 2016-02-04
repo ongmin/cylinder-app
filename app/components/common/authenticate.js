@@ -14,16 +14,11 @@ var Authenticate = React.createClass({
   render: function () {
     if (this.props.profile) {
       return (
-        <div className='login-box'>
-          <h2>Hello {this.props.profile.nickname}</h2>
-          <button onClick={this.props.logOut}>Sign Out</button>
-        </div>
+          <button className='button-loginout'onClick={this.props.logOut}>Sign Out</button>
       )
     } else {
       return (
-        <div className='login-box'>
-          <button onClick={this.showLock}>Sign In</button>
-        </div>
+          <button className='button-loginout' onClick={this.showLock}>Sign In</button>
       )
     }
   },

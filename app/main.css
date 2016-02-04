@@ -6,6 +6,17 @@ body {
   margin: 0 auto;
 }
 
+/*Remove styling from all list and hyperlink items*/
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  style: none;
+}
+
 /* <== Styling: Header ==> */
 
 .headerContainer {
@@ -21,21 +32,35 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 8vh;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  align-items: center;
 }
 
-a {
-  text-decoration: none;
-  style: none;
+.topbar a {
+  height: 100%;
 }
 
 .align-left {
-  float: left;
+  justify-content: space-around;
   text-align: left;
 }
 
 .align-right {
-  float: right;
+  justify-content: space-around;
+}
+
+/*Styling: LogIn-Out button*/
+.button-loginout {
+  margin-left: 10px;
+  font: 1em Courier, monospace;
+  background-color: #ffc444;
+  line-height: 25px;
+  margin-left: 0px;
+  border: 1px solid #B8B8B8;
+  border-radius: 0px;
 }
 
 
@@ -48,11 +73,13 @@ a {
   height: 92vh;
   margin-top: 10vh;
   text-align: center;
+  color: black;
 }
 
 .bodyContainer svg {
   text-align: center;
 }
+
 
 @media (max-width: 560px) {
   .bodyContainer {
@@ -79,10 +106,21 @@ div.topbar ul li {
 }
 
 .contentContainer {
-  background: grey;
+  background: white;
   text-align: center;
   padding-top: 20vh;
   padding-bottom: 30vh;
+  display: flex;
+  align-content: center;
+}
+
+#addChannel {
+  font-size: 2em;
+  border: 2px solid #B8B8B8;
+  border-radius: 6px;
+  width: 20vw;
+  display: inline;
+  margin: 0 auto;
 }
 
 #tv {
@@ -114,6 +152,37 @@ div.topbar ul li {
   width: 100%;
 }
 
+
+/*<== Styling: TV Screen CSS ==> */
+
+
+#container {
+  max-width: 30vw;
+  margin: auto;
+}
+
+#monitor {
+	background: #000;
+	position: relative;
+	border-top: 3px solid #888;
+	margin: 5%;
+	padding: 2% 2% 4% 2%;
+	border-radius: 10px;
+	border-bottom-left-radius: 50% 2%;
+	border-bottom-right-radius: 50% 2%;
+	transition: margin-right 1s;
+}
+
+#monitorscreen {
+	position: relative;
+  background-color: #B8B8B8;
+	background-size: cover;
+	background-position: top center;
+	height: 0;
+	padding-bottom: 56.25%;
+	position: relative;
+	overflow: hidden;
+}
 
 /* <== Styling: Channels ==> */
 
