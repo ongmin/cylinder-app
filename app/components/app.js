@@ -7,16 +7,58 @@ var Header = require('./common/header')
 var RouteHandler = require('react-router').RouteHandler
 
 var App = React.createClass({
+  getInitialState: function () {
+    return {
+      idToken: null,
+      profile: null
+    }
+  },
+
   componentWillMount: function () {
     this.lock = new Auth0Lock('gm22xoo58OOcB8qLEkg6dcohb6vzQnZo', 'caalberts.auth0.com')
-    this.setState({idToken: this.getIdToken()})
+    this.idToken = this.getIdToken()
+    if (this.idToken) {
+      this.setState({ idToken: this.idToken })
+      this.lock.getProfile(this.idToken, (err, profile) => {
+        if (err) return console.error('Error loading the Profile', err)
+        this.setState({profile: profile})
+        window.fetch('/users/' + profile.user_id)
+          .then(res => {
+            if (res.status === 404) return 404
+            else return res.json()
+          })
+          .then(results => {
+            let fetchUrl
+            let fetchMethod
+            if (results === 404) {
+              // create new user
+              fetchUrl = '/users'
+              fetchMethod = 'POST'
+            } else {
+              // update user
+              if (Date.parse(results[0].updated_at) < Date.parse(profile.updated_at)) {
+                fetchUrl = '/users/' + profile.user_id
+                fetchMethod = 'PUT'
+              }
+            }
+            window.fetch(fetchUrl, {
+              method: fetchMethod,
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(profile)
+            })
+          })
+      })
+    }
   },
 
   render: function () {
     return (
       <div>
         <div className='headerContainer'>
-        <Header lock={this.lock} idToken={this.state.idToken}/>
+        <Header lock={this.lock} idToken={this.state.idToken} profile={this.state.profile} />
         </div>
         <div className='bodyContainer'>
         <RouteHandler/>
