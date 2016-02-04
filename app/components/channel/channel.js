@@ -7,9 +7,6 @@ import SearchBar from './searchBar'
 import Store from '../../stores/store'
 import Actions from '../../actions/Actions'
 
-// var Router = require('react-router')
-// var Link = Router.Link
-
 export default class Channel extends React.Component {
   constructor (props) {
     super(props)
@@ -19,10 +16,6 @@ export default class Channel extends React.Component {
       childVisible: true
     }
   }
-
-  // playVideo (id) {
-  //   this.setState({ currentVideo: id })
-  // }
 
   onClick () {
     this.setState({childVisible: !this.state.childVisible})

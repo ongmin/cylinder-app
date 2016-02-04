@@ -1,12 +1,10 @@
 'use strict'
 
 var Dispatcher = require('../dispatcher/appDispatcher')
-// var SearchApi = require('../api/searchApi')
 var ChannelApi = require('../api/channelApi')
 var ActionTypes = require('../constants/actionTypes')
 
 var Actions = {
-
   search: function (keywords) {
     Dispatcher.dispatch({
       actionType: ActionTypes.FETCH_RESULTS,
@@ -70,7 +68,6 @@ var Actions = {
 
   deleteAuthor: function (id) {
     ChannelApi.deleteAuthor(id)
-
     Dispatcher.dispatch({
       actionType: ActionTypes.DELETE_AUTHOR,
       id: id

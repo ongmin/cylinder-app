@@ -10,7 +10,6 @@ var VideoItem = React.createClass({
   },
 
   handleClick: function (e) {
-    // this.props.playVideo(this.props.video.id.videoId)
     Actions.playVideo(this.props.video)
   },
 

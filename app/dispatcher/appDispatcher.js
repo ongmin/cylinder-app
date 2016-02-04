@@ -59,24 +59,24 @@ AppDispatcher.register(function (action) {
       Store.emitChange()
       break
 
-    case ActionTypes.CREATE_CHANNEL:
-      channels.push(action.name)
-      Store.emitChange()
-      break
+    // case ActionTypes.CREATE_CHANNEL:
+    //   channels.push(action.name)
+    //   Store.emitChange()
+    //   break
 
-    case ActionTypes.UPDATE_PLAYLIST:
-      var existingVideo = _.find(results, {id: action.video.id})
-      var existingVideoIndex = _.indexOf(playlist, existingVideo)
-      results.splice(existingVideoIndex, 1, action.video)
-      Store.emitChange()
-      break
+    // case ActionTypes.UPDATE_PLAYLIST:
+    //   var existingVideo = _.find(results, {id: action.video.id})
+    //   var existingVideoIndex = _.indexOf(playlist, existingVideo)
+    //   results.splice(existingVideoIndex, 1, action.video)
+    //   Store.emitChange()
+    //   break
 
-    case ActionTypes.DELETE_PLAYLIST:
-      _.remove(channels, function (playlist) {
-        return action.id === playlist.id
-      })
-      Store.emitChange()
-      break
+    // case ActionTypes.DELETE_PLAYLIST:
+    //   _.remove(channels, function (playlist) {
+    //     return action.id === playlist.id
+    //   })
+    //   Store.emitChange()
+    //   break
 
     default:
       // no op

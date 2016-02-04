@@ -2,7 +2,6 @@
 
 var React = require('react')
 var Actions = require('../../actions/Actions')
-// var SearchApi = require ('../../api/searchApi')
 var Store = require('../../stores/store')
 
 var SearchBar = React.createClass({
