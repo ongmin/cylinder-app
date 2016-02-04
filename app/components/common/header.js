@@ -8,6 +8,7 @@ var Authenticate = require('./authenticate')
 var Header = React.createClass({
   propTypes: {
     lock: React.PropTypes.object,
+    profile: React.PropTypes.object,
     idToken: React.PropTypes.string
   },
   render: function () {
@@ -24,7 +25,7 @@ var Header = React.createClass({
     <li><Link to='channel'>Channel</Link></li>
     {/* <li><Link to='app'>Login</Link></li> */}
     {/* }<li><Link to='app'>Create Profile</Link></li> */}
-    <Authenticate lock={this.props.lock} idToken={this.props.idToken} />
+    <Authenticate lock={this.props.lock} idToken={this.props.idToken} profile={this.props.profile} />
   </ul>
 </div>
     )
