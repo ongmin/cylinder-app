@@ -8,11 +8,16 @@ var ActionTypes = require('../constants/actionTypes')
 var Actions = {
 
   search: function (keywords) {
-    // var newSearch = SearchApi.fetchResults(keywords)
-    console.log('dispatching action FETCH_RESULTS');
     Dispatcher.dispatch({
       actionType: ActionTypes.FETCH_RESULTS,
       text: keywords
+    })
+  },
+
+  addVideo: function (video) {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.ADD_VIDEO,
+      video: video
     })
   },
 

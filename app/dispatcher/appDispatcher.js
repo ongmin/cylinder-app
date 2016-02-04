@@ -36,7 +36,7 @@ AppDispatcher.register(function (action) {
       break
 
     case ActionTypes.ADD_VIDEO:
-      playlist.push(action.video)
+      Store.addVideo(action.video)
       Store.emitChange()
       break
 

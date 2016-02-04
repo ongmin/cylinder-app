@@ -15,8 +15,8 @@ var Store = assign({}, EventEmitter.prototype, {
   playlist: [],
   channels: [],
 
+  // search youtube api
   fetchResults: function (keywords) {
-    console.log('fetching', keywords)
     return window.fetch('/searchresults/' + keywords)
       .then(res => res.json())
       .then((data) => {
@@ -24,9 +24,16 @@ var Store = assign({}, EventEmitter.prototype, {
         this.emitChange()
       })
   },
-
   getAllResults: function () {
     return this.results
+  },
+
+  // add video from search to playlist
+  addVideo: function (video) {
+    this.playlist.push(video)
+  },
+  getPlaylist: function () {
+    return this.playlist
   },
 
   emitChange: function () {
@@ -45,10 +52,6 @@ var Store = assign({}, EventEmitter.prototype, {
   deleteVideo: function (video) {
     var idx = this.playlist.indexOf(video)
     this.playlist.splice(idx, 1)
-  },
-
-  addNewVideo: function (video) {
-    this.playlist.push(video)
   },
 
 // For ChannelAPI

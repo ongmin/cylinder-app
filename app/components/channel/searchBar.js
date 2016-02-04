@@ -6,23 +6,17 @@ var Actions = require('../../actions/Actions')
 var Store = require('../../stores/store')
 
 var SearchBar = React.createClass({
-  propTypes: {
-    addToPlaylist: React.PropTypes.func
-  },
-
   getInitialState: function () {
     return {
       results: Store.getAllResults()
     }
   },
 
-  onChange: function (e) {
+  onChange: function () {
     this.setState({results: Store.getAllResults()})
-    console.log('change:', this.state)
   },
 
   componentDidMount: function () {
-    console.log(this.state)
     Store.addChangeListener(this.onChange)
   },
 
@@ -31,7 +25,6 @@ var SearchBar = React.createClass({
   },
 
   whenUserTypes: function (e) {
-    console.log(e.target.value)
     Actions.search(e.target.value)
   },
 
@@ -45,7 +38,7 @@ var SearchBar = React.createClass({
           ref='searchTextInput'
           onChange={this.whenUserTypes}
         />
-        <SearchResult results={this.state.results} addToPlaylist={this.props.addToPlaylist} />
+        <SearchResult results={this.state.results} />
       </div>
       )
   }
@@ -53,8 +46,7 @@ var SearchBar = React.createClass({
 
 var SearchResult = React.createClass({
   propTypes: {
-    results: React.PropTypes.array,
-    addToPlaylist: React.PropTypes.func
+    results: React.PropTypes.array
   },
 
   render: function () {
@@ -76,7 +68,7 @@ var SearchResult = React.createClass({
   },
 
   handleClick: function (i) {
-    this.props.addToPlaylist(this.props.results[i])
+    Actions.addVideo(this.props.results[i])
   }
 })
 

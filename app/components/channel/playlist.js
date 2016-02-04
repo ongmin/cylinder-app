@@ -23,7 +23,6 @@ var VideoItem = React.createClass({
           <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
         </div>
       </div>
-
     )
   }
 })
@@ -51,13 +50,6 @@ var Playlist = React.createClass({
   propTypes: {
     playlist: React.PropTypes.array.isRequired,
     playVideo: React.PropTypes.func
-  },
-
-  getInitialState: function () {
-    return {
-      videos: [],
-      data: []
-    }
   },
 
   render: function () {
