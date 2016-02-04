@@ -28,12 +28,16 @@ var Store = assign({}, EventEmitter.prototype, {
     return this.results
   },
 
-  // add video from search to playlist
+  // manipulate playlist
   addVideo: function (video) {
     this.playlist.push(video)
   },
   getPlaylist: function () {
     return this.playlist
+  },
+  removeVideo: function (video) {
+    var idx = this.playlist.indexOf(video)
+    this.playlist.splice(idx, 1)
   },
 
   emitChange: function () {
@@ -46,12 +50,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
   removeChangeListener: function (callback) {
     this.removeListener(CHANGE_EVENT, callback)
-  },
-
-// For PlaylistAPI
-  deleteVideo: function (video) {
-    var idx = this.playlist.indexOf(video)
-    this.playlist.splice(idx, 1)
   },
 
 // For ChannelAPI

@@ -21,6 +21,13 @@ var Actions = {
     })
   },
 
+  removeVideo: function (video) {
+    Dispatcher.dispatch({
+      actionType: ActionTypes.REMOVE_VIDEO,
+      video: video
+    })
+  },
+
   createChannel: function (channel) {
     var newChannel = ChannelApi.saveAuthor(channel)
 

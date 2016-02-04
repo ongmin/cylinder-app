@@ -1,6 +1,7 @@
 'use strict'
 
 var React = require('react')
+var Actions = require('../../actions/Actions')
 
 var VideoItem = React.createClass({
   propTypes: {
@@ -12,16 +13,23 @@ var VideoItem = React.createClass({
     this.props.playVideo(this.props.video.id.videoId)
   },
 
+  removeVideo: function (e) {
+    Actions.removeVideo(this.props.video)
+  },
+
   render: function () {
     return (
-      <div className='object' onClick={this.handleClick} >
-        <div className='object-imgbox'>
-          <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
-          <p className='videoitem-title'>{this.props.video.snippet.title}</p>
+      <div>
+        <div className='object' onClick={this.handleClick} >
+          <div className='object-imgbox'>
+            <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
+            <p className='videoitem-title'>{this.props.video.snippet.title}</p>
+          </div>
+          <div className='object-textbox'>
+            <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
+          </div>
         </div>
-        <div className='object-textbox'>
-          <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
-        </div>
+        <button className='remove-video' onClick={this.removeVideo}>&times;</button>
       </div>
     )
   }

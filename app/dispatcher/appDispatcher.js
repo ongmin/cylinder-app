@@ -30,15 +30,22 @@ AppDispatcher.register(function (action) {
       break
 
 // For PlaylistAPI
+    case ActionTypes.ADD_VIDEO:
+      Store.addVideo(action.video)
+      Store.emitChange()
+      break
+
+    case ActionTypes.REMOVE_VIDEO:
+      Store.removeVideo(action.video)
+      Store.emitChange()
+      break
+
     case ActionTypes.CREATE_CHANNEL:
       channels.push(action.name)
       Store.emitChange()
       break
 
-    case ActionTypes.ADD_VIDEO:
-      Store.addVideo(action.video)
-      Store.emitChange()
-      break
+
 
     case ActionTypes.UPDATE_PLAYLIST:
       var existingVideo = _.find(results, {id: action.video.id})

@@ -9,6 +9,7 @@ module.exports = keyMirror({
   FETCH_RESULTS: null,
   CREATE_CHANNEL: null,
   ADD_VIDEO: null,
+  REMOVE_VIDEO: null,
   UPDATE_PLAYLIST: null,
   DELETE_PLAYLIST: null
 })
