@@ -45,7 +45,7 @@ export default class Channel extends React.Component {
             </div>
 
             <div id='container-rightside'>
-              <button id='toggleButton' onClick={this.onClick.bind(this)}>BUTTON</button>
+              <button id='toggleButton-float' onClick={this.onClick.bind(this)}>BUTTON</button>
               { this.state.childVisible ? <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} /> : null }
             </div>
         </div>

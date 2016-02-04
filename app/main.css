@@ -241,6 +241,12 @@ div.topbar ul li {
 
 /*Styling: Search Results*/
 
+#toggleButton-float {
+  position: absolute;
+  right: 0px;
+  top: 20vh;
+}
+
 #playlist-searchBar {
   margin-bottom: 3%;
 }
