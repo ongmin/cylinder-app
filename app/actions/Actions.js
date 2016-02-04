@@ -1,17 +1,17 @@
 'use strict'
 
 var Dispatcher = require('../dispatcher/appDispatcher')
-var SearchApi = require('../api/searchApi')
+// var SearchApi = require('../api/searchApi')
 var ChannelApi = require('../api/channelApi')
 var ActionTypes = require('../constants/actionTypes')
 
 var Actions = {
 
   search: function (keywords) {
-    var newSearch = SearchApi.fetchResults(keywords)
-
-    Dispatcher.disapatch({
-      actionTypes: ActionTypes.GET_RESULTS,
+    // var newSearch = SearchApi.fetchResults(keywords)
+    console.log('dispatching action FETCH_RESULTS');
+    Dispatcher.dispatch({
+      actionType: ActionTypes.FETCH_RESULTS,
       text: keywords
     })
   },

@@ -20,14 +20,13 @@ AppDispatcher.register(function (action) {
   switch (action.actionType) {
 
 // For SearchAPI
-    case ActionTypes.INITIALIZE:
-      Store.getAllResults(action.text)
-      Store.emitChange()
-      break
+    // case ActionTypes.INITIALIZE:
+    //   Store.getAllResults(action.text)
+    //   Store.emitChange()
+    //   break
 
-    case ActionTypes.GET_RESULTS:
-      Store.getAllResults(action.text)
-      Store.emitChange()
+    case ActionTypes.FETCH_RESULTS:
+      Store.fetchResults(action.text)
       break
 
 // For PlaylistAPI

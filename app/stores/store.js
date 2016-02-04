@@ -15,24 +15,17 @@ var Store = assign({}, EventEmitter.prototype, {
   playlist: [],
   channels: [],
 
-// For SearchAPI
-  // getInitialData: function () {
-  //
-  // },
-
   fetchResults: function (keywords) {
+    console.log('fetching', keywords)
     return window.fetch('/searchresults/' + keywords)
       .then(res => res.json())
       .then((data) => {
         this.results = data
-        return data
-        // console.log(this.results)
-    })
+        this.emitChange()
+      })
   },
 
-  getAllResults: function (text) {
-    // console.log(this.results)
-    // return this.fetchResults(text).then()
+  getAllResults: function () {
     return this.results
   },
 
