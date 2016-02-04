@@ -118,6 +118,17 @@ div.topbar ul li {
   margin-bottom: 10vh;
 }
 
+.contentContainer h2 {
+  font: 1.5em Courier, monospace;
+  font-weight: bold;
+}
+
+.contentContainer p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+
 #addChannel {
   font-size: 2em;
   border: 2px solid #B8B8B8;
