@@ -10,6 +10,8 @@ import users from './routes/users'
 
 mongoose.connect(dbUri)
 
+const API_KEY = process.env.CYLINDER_API_KEY
+
 const app = express()
 
 const jwtCheck = jwt({
