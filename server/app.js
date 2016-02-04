@@ -1,39 +1,31 @@
 import 'babel-polyfill'
 import express from 'express'
-import mongoose from 'mongoose'
-import bodyParser from 'body-parser'
+import path from 'path'
+import fallback from 'express-history-api-fallback'
 import cors from 'cors'
-// import jwt from 'express-jwt'
-import slug from 'slug'
+import jwt from 'express-jwt'
+import mongoose from 'mongoose'
 import YTSearch from 'youtube-search-api'
+import dbUri from './db/uri'
+import channels from './routes/channels'
+import users from './routes/users'
 
-const app = express()
-
-// const jwtCheck = jwt({
-  // secret: new Buffer(process.env.EXPRESSAPI_AUTH0_SECRET, 'base64'),
-  // audience: process.env.EXPRESSAPI_AUTH0_CLIENTID
-// })
-
-const API_KEY = process.env.CYLINDER_API_KEY
-
-const dbUri = 'mongodb://' +
-  process.env.CYLINDER_MONGODB_USER + ':' +
-  process.env.CYLINDER_MONGODB_PASSWORD + '@' +
-  process.env.CYLINDER_MONGODB_URI
 mongoose.connect(dbUri)
 
-const Channel = mongoose.model('Channel', {
-  name: String,
-  slug: String,
-  owner: Array,
-  viewers: Array,
-  playlist: Array
+const API_KEY = process.env.CYLINDER_API_KEY
+const root = path.join(__dirname, '../dist')
+const app = express()
+
+const jwtCheck = jwt({
+  secret: new Buffer(process.env.CYLINDER_AUTH0_SECRET, 'base64'),
+  audience: process.env.CYLINDER_AUTH0_CLIENTID
 })
 
-app.use(express.static('dist'))
-// app.use('/channels', jwtCheck)
-app.use(bodyParser.json())
+app.use(express.static(root))
 app.use(cors())
+app.use('/channels', jwtCheck)
+app.use('/channels', channels)
+app.use('/users', users)
 
 app.get('/searchresults/:keyword', (req, res) =>
   YTSearch({ key: API_KEY, term: req.params.keyword, max: '10' }, response => {
@@ -41,69 +33,6 @@ app.get('/searchresults/:keyword', (req, res) =>
   })
 )
 
-// list all channels
-app.get('/channels', (req, res) => {
-  Channel.find({}, (err, docs) => {
-    if (err) return console.error(err)
-    if (docs !== undefined) {
-      res.json(docs)
-    } else {
-      res.status(500)
-    }
-  })
-})
-
-// search channel by slug
-app.get('/channels/:slug', (req, res) => {
-  Channel.find({ slug: req.params.slug.toLowerCase() }, (err, docs) => {
-    if (err) return console.error(err)
-    if (docs.length > 0) {
-      res.json(docs)
-    } else {
-      res.status(404).end()
-    }
-  })
-})
-
-// create new channel
-app.post('/channels', (req, res) => {
-  const newChannel = new Channel(
-    Object.assign(
-      {},
-      req.body,
-      { slug: slug(req.body.name).toLowerCase() }
-    )
-  )
-  newChannel.save(err => {
-    if (err) return console.error(err)
-    res.status(201).json(newChannel)
-  })
-})
-
-app.put('/channels', (req, res) => {
-  Channel.findOneAndUpdate(
-    { slug: req.body.slug },
-    req.body,
-    { new: true },
-    (err, doc) => {
-      if (err) return console.error(err)
-      if (doc) {
-        res.status(200).json(doc)
-      } else {
-        res.status(404).end('Not found')
-      }
-    })
-})
-
-app.delete('/channels', (req, res) => {
-  Channel.findOneAndRemove({ slug: req.body.slug }, (err, doc) => {
-    if (err) return console.error(err)
-    if (doc) {
-      res.status(200).end()
-    } else {
-      res.status(404).end('Not Found')
-    }
-  })
-})
+app.use(fallback('index.html', { root }))
 
 export default app

@@ -1,12 +1,15 @@
 /* global describe it */
-
-import app from '../../server/app'
 import { expect } from 'chai'
 import request from 'supertest'
 import slug from 'slug'
+import app from './fixture'
+import channels from '../../server/routes/channels'
+
+app.use('/channels', channels)
 
 const NOT_FOUND = 404
 const OK = 200
+const CREATED = 201
 
 let testChannel = {
   name: 'Adele Playlist',
@@ -34,7 +37,7 @@ describe('/POST /channels', function () {
   it('should create a new channel and respond with the object', done => {
     agent.post('/channels').send(testChannel)
       .expect('Content-Type', /json/)
-      .expect(201)
+      .expect(CREATED)
       .expect(res => {
         for (const prop in testChannel) {
           expect(res.body[prop]).to.eql(testChannel[prop])
@@ -80,7 +83,7 @@ describe('/PUT /channels', function () {
   this.timeout(10000)
   const agent = request.agent(app)
   testChannel.viewers.push('seb')
-  testChannel.playlist.push('some song')
+  testChannel.playlist.push('a song')
   it('should return the updated channel', done => {
     agent.put('/channels')
       .send(Object.assign(

@@ -6,6 +6,22 @@ body {
   margin: 0 auto;
 }
 
+/*Remove styling from all list and hyperlink items*/
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  style: none;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
 /* <== Styling: Header ==> */
 
 .headerContainer {
@@ -21,21 +37,35 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: 8vh;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  align-items: center;
 }
 
-a {
-  text-decoration: none;
-  style: none;
+.topbar a {
+  height: 100%;
 }
 
 .align-left {
-  float: left;
+  justify-content: space-around;
   text-align: left;
 }
 
 .align-right {
-  float: right;
+  justify-content: space-around;
+}
+
+/*Styling: LogIn-Out button*/
+.button-loginout {
+  margin-left: 10px;
+  font: 1em Courier, monospace;
+  background-color: #ffc444;
+  line-height: 25px;
+  margin-left: 0px;
+  border: 1px solid #B8B8B8;
+  border-radius: 0px;
 }
 
 
@@ -48,11 +78,13 @@ a {
   height: 92vh;
   margin-top: 10vh;
   text-align: center;
+  color: black;
 }
 
 .bodyContainer svg {
   text-align: center;
 }
+
 
 @media (max-width: 560px) {
   .bodyContainer {
@@ -78,11 +110,37 @@ div.topbar ul li {
   text-align: center;
 }
 
+.homePageContainer {
+  position: relative;
+  top:
+}
+
 .contentContainer {
-  background: grey;
+  background: white;
   text-align: center;
-  padding-top: 20vh;
-  padding-bottom: 30vh;
+  align-content: center;
+  padding-top: 12vh;
+  margin-bottom: 10vh;
+}
+
+.contentContainer h2 {
+  font: 1.5em Courier, monospace;
+  font-weight: bold;
+}
+
+.contentContainer p {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+
+#addChannel {
+  font-size: 2em;
+  border: 2px solid #B8B8B8;
+  border-radius: 6px;
+  width: 20vw;
+  display: inline;
+  margin: 0 auto;
 }
 
 #tv {
@@ -110,14 +168,123 @@ div.topbar ul li {
 
 .channelsContainer {
   background: pink;
-  height: 100vh;
+  height: 90%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
+
+/*<== Styling for About Page ==>*/
+
+#techContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 300px;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 0;
+  align-items: center;
+}
+
+#techContainer li {
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  border: 1px solid black;
+  margin: 2px 2px 2px 2px;
+  flex-grow: 1;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.techContainer h2 {
+  font: 1.5em Courier, monospace;
+  font-weight: bold;
+}
+
+/*Styling for layout of Channels Page*/
+
+#container-top {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+#container-main {
+  display: inline;
+  width: 85vw;
+  min-width: 80%;
+  height: 100%;
+}
+
+#container-rightside {
+  display: inline;
+  width: 15vw;
+  min-width: 100px;
+  background-color: black;
+  position: absolute;
+  right: 0px;
+}
+
+#container-bottom {
+  width: 100%;
+  background-color: lightgrey;
+  position: absolute;
+  top: 80vh;
+  height: 100%;
+}
+
+#container-main h1 {
+  text-align: left;
+  margin-left: 5vw;
+}
+
+#container-bottom h1 {
+  text-align: left;
+  margin-left: 5vw;
+}
+/*<== Styling: TV Screen CSS ==> */
+
+
+#container {
+  max-width: 30vw;
+  margin: auto;
+}
+
+#monitor {
+	background: #000;
+	position: relative;
+	border-top: 3px solid #888;
+	margin: 5%;
+	padding: 2% 2% 4% 2%;
+	border-radius: 10px;
+	border-bottom-left-radius: 50% 2%;
+	border-bottom-right-radius: 50% 2%;
+	transition: margin-right 1s;
+}
+
+#monitorscreen {
+	position: relative;
+  background-color: #B8B8B8;
+	background-size: cover;
+	background-position: top center;
+	height: 0;
+	padding-bottom: 56.25%;
+	position: relative;
+	overflow: hidden;
+}
 
 /* <== Styling: Channels ==> */
 
 /*Styling: for searchbar*/
+
+#container-search {
+  background: black;
+}
 
 #search-bar {
   width: 60%;
@@ -134,14 +301,121 @@ div.topbar ul li {
   border: 1px solid #B8B8B8;
 }
 
+#text-searchresult {
+  color: white;
+  font: 1em Courier, monospace;
+}
+
 ::selection {
   background: #EDEDED;
 }
 
-/*Styling: for each video item*/
+
+/*Styling: Search Results*/
+
+#toggleButton-float {
+  padding: 5px 10px 5px 10px;
+  position: absolute;
+  right: 22vw;
+  top: 12vh;
+  border-radius: 50px;
+  font-size: 2em;
+  border: 1px solid black;;
+  background-color: #ffc444;
+  box-shadow: 2px 2px 5px #888;
+}
+
+#playlist-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  background: black;
+  max-height: 80vh;
+  overflow-y: scroll;
+  position: relative;
+  padding-top: 10vh;
+}
+
+.playlist-object {
+    display: block;
+    margin: 10px 5px 10px 5px;
+    border-color: #ccc;
+    background-color: black;
+    cursor: pointer;
+    color: black;
+    width: 10%;
+    min-width: 120px;
+    align-self: center;
+}
+
+.playlist-object:hover .playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 1px;
+  right: 0px;
+  text-align: right;
+  width: 100%;
+  background-color: rgba(184,184,184,0.5);
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: block;
+}
+
+.playlist-object-imgbox {
+  position: relative;
+}
+
+.playlist-videoitem-img-responsive {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  top: 0em;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 0%;
+  display: none;
+}
+
+.playlist-object-textbox {
+  position: relative;
+  display: flex;
+}
+
+.playlist-videoitem-channel-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  display: block;
+  background-color: black;
+}
+
+/*Styling: for each selected video item*/
+
+.container-results {
+  display: flex;
+  flex: wrap;
+  width: 100%;
+  height: 90vh;
+}
 
 .object {
-    display: block-inline;
+    display: inline-block;
     margin: 20px 10px 20px 10px;
     border-color: #ccc;
     box-shadow: 2px 2px 5px #888;
@@ -150,7 +424,7 @@ div.topbar ul li {
     line-height: 1.4;
     color: black;
     width: 20vw;
-    min-width: 200px;
+    min-width: 150px;
 }
 
 .videoitem-img-responsive {
@@ -162,7 +436,6 @@ div.topbar ul li {
 .object-imgbox {
   position: relative;
 }
-
 
 .videoitem-title {
   font-size: 0.8em;
@@ -194,14 +467,87 @@ div.topbar ul li {
   font-size: 0.8em;
 }
 
-p {
-  margin: 0;
-  padding: 0;
+
+
+
+/*NOTEBOOK CODE NOT IN USE*/
+/*
+#playlist-searchBar {
+  margin-bottom: 3%;
 }
 
-.container-results {
+#playlist-container {
   display: flex;
-  flex: wrap;
+  width: 100%;
+  justify-content: space-around;
+  background: #363636;
+}
+
+.playlist-object {
+    display: block;
+    margin: 20px 10px 20px 10px;
+    border-color: #ccc;
+    box-shadow: 2px 2px 5px #888;
+    background-color: white;
+    cursor: pointer;
+    color: black;
+    width: 8%;
+    min-width: 100px;
+}
+
+
+.playlist-object:hover .playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 1px;
+  right: 0px;
+  text-align: right;
+  width: 100%;
+  background-color: rgba(184,184,184,0.5);
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: block;
+}
+
+.playlist-object-imgbox {
+  position: relative;
+}
+
+.playlist-videoitem-img-responsive {
+  object-fit: fill;
   width: 100%;
   height: 100%;
 }
+
+.playlist-videoitem-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  top: 0.2em;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: none;
+}
+
+.playlist-object-textbox {
+  position: relative;
+  display: flex;
+}
+
+.playlist-videoitem-channel-title {
+  font-size: 0.5em;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  text-align: right;
+  margin: 10% auto;
+  margin-top: 0;
+  margin-bottom: 2%;
+  display: block;
+}*/

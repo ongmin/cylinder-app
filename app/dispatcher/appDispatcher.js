@@ -12,5 +12,52 @@
  */
 
 var Dispatcher = require('flux').Dispatcher
+var AppDispatcher = new Dispatcher()
+var Store = require('../stores/store')
+var ActionTypes = require('../constants/actionTypes')
 
-module.exports = new Dispatcher()
+AppDispatcher.register(function (action) {
+  switch (action.actionType) {
+
+// For SearchAPI
+    case ActionTypes.INITIALIZE:
+      Store.getAllResults(action.text)
+      Store.emitChange()
+      break
+
+    case ActionTypes.GET_RESULTS:
+      Store.getAllResults(action.text)
+      Store.emitChange()
+      break
+
+// For PlaylistAPI
+    case ActionTypes.CREATE_CHANNEL:
+      channels.push(action.name)
+      Store.emitChange()
+      break
+
+    case ActionTypes.ADD_VIDEO:
+      playlist.push(action.video)
+      Store.emitChange()
+      break
+
+    case ActionTypes.UPDATE_PLAYLIST:
+      var existingVideo = _.find(results, {id: action.video.id})
+      var existingVideoIndex = _.indexOf(playlist, existingVideo)
+      results.splice(existingVideoIndex, 1, action.video)
+      Store.emitChange()
+      break
+
+    case ActionTypes.DELETE_PLAYLIST:
+      _.remove(channels, function (playlist) {
+        return action.id === playlist.id
+      })
+      Store.emitChange()
+      break
+
+    default:
+      // no op
+  }
+})
+
+module.exports = AppDispatcher

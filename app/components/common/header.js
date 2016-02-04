@@ -8,7 +8,9 @@ var Authenticate = require('./authenticate')
 var Header = React.createClass({
   propTypes: {
     lock: React.PropTypes.object,
-    idToken: React.PropTypes.string
+    profile: React.PropTypes.object,
+    idToken: React.PropTypes.string,
+    logOut: React.PropTypes.func
   },
   render: function () {
     return (
@@ -20,11 +22,9 @@ var Header = React.createClass({
     </ul>
   <ul className='align-right'>
     <li><Link to='app'>Home</Link></li>
-    <li><Link to='app'>About</Link></li>
+    <li><Link to='about'>About</Link></li>
     <li><Link to='channel'>Channel</Link></li>
-    {/* <li><Link to='app'>Login</Link></li> */}
-    {/* }<li><Link to='app'>Create Profile</Link></li> */}
-    <Authenticate lock={this.props.lock} idToken={this.props.idToken} />
+    <li><Authenticate className='button-loginout' lock={this.props.lock} idToken={this.props.idToken} profile={this.props.profile} logOut={this.props.logOut} /></li>
   </ul>
 </div>
     )

@@ -6,7 +6,10 @@
   "env": {
     "CYLINDER_MONGODB_USER": { "required": true },
     "CYLINDER_MONGODB_PASSWORD": { "required": true },
-    "CYLINDER_MONGODB_URI": { "required": true }
+    "CYLINDER_MONGODB_URI": { "required": true },
+    "CYLINDER_AUTH0_CLIENTID": { "required": true },
+    "CYLINDER_AUTH0_SECRET": { "required": true },
+    "CYLINDER_API_KEY": { "required": true }
   },
   "addons": []
 }

@@ -1,64 +1,74 @@
 'use strict'
 
 var React = require('react')
-var debounce = require('debounce')
+var Action = ('../../actions/Actions')
+// var SearchApi = require ('../../api/searchApi')
+var Store = require('../../stores/store')
+var SearchResult = require('./searchResult')
 
 var SearchBar = React.createClass({
+  propTypes: {
+    addToPlaylist: React.PropTypes.func
+  },
+
+  updateStateFromStores: function (keywords) {
+    Action.search(keywords)
+  },
+
   getInitialState: function () {
-    return {results: [], text: 'cat'}
+    return {
+      results: Store.getAllResults()
+    }
   },
 
   onChange: function (e) {
-    this.setState({text: e.target.value})
+    this.setState({results: Store.getAllResults()})
   },
 
   componentDidMount: function () {
-    this.fetchResults()
+    Store.addChangeListener(this.onChange)
   },
 
-  whenUserTypes: function () {
-    console.log('type type type')
-    debounce(this.fetchResults(), 2000)
-  },
-
-  fetchResults: function () {
-    window.fetch('/searchresults/' + this.state.text).then((response) => {
-      return response.json()
-    }).then((data) => {
-      console.log(data)
-      this.setState({ results: data })
-    })
+  whenUserTypes: function (e) {
+    var text = e.target.value
+    this.setState({text: text})
+    Store.fetchResults(text).then(data => this.setState({results: data}))
   },
 
   handleSubmit: function (e) {
     e.preventDefault()
-    var nextItems = []
-    var nextText = ''
-    this.setState({results: nextItems, text: nextText})
+    // var nextItems = []
+    // var nextText = ''
+    // this.setState({results: nextItems, text: nextText})
   },
 
   render: function () {
     return (
-      <form
+      <div>
+      <p id='text-searchresult'>Search for videos</p>
+      <form id='container-search'
         action=''
         method='post'
-        id='search-form'>
+        id='search-form'
+        onSubmit={this.handleSubmit}>
 
         <input
           type='text'
           id='search-bar'
           placeholder='Search for videos..'
           ref='searchTextInput'
-          onChange={this.onChange}
-          onInput={this.whenUserTypes}
+          onChange={this.whenUserTypes}
           value={this.state.text} />
 
         <button
           className='icon'
           id='search-button'
-          value='Search'>Search</button>
-
+          value='Search'
+          onClick={this.updateStateFromStores}>Search</button>
         </form>
+
+      <SearchResult results={this.state.results} addToPlaylist={this.props.addToPlaylist} />
+      </div>
       )
   }
 })
