@@ -2,16 +2,17 @@
 
 var React = require('react')
 var debounce = require('debounce')
-var SearchApi = require ('../../api/searchApi')
+var Action = ('../../actions/Actions')
+// var SearchApi = require ('../../api/searchApi')
 var Store = require('../../stores/store')
 
-function getStateFromStores () {
-  return {
-    results: Store.getAllResults()
-  }
-}
 
 var SearchBar = React.createClass({
+
+  updateStateFromStores: function (keywords) {
+    Action.search(keywords)
+  },
+
   getInitialState: function () {
     return {
       results: Store.getAllResults(),
@@ -21,7 +22,7 @@ var SearchBar = React.createClass({
 
   onChange: function (e) {
     this.setState({text: e.target.value})
-    this.setState(getStateFromStores())
+    this.setState(Store.getAllResults())
   },
 
   componentDidMount: function () {
@@ -32,7 +33,7 @@ var SearchBar = React.createClass({
     console.log('type type type')
     var text = e.target.value
     this.setState({text: text})
-    debounce(getStateFromStores(), 2000)
+    debounce(Store.getAllResults(), 2000)
   },
 
   handleSubmit: function (e) {
@@ -61,7 +62,8 @@ var SearchBar = React.createClass({
         <button
           className='icon'
           id='search-button'
-          value='Search'>Search</button>
+          value='Search'
+          onClick={this.updateStateFromStores}>Search</button>
 
         </form>
       )
