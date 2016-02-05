@@ -15,7 +15,7 @@ var Header = React.createClass({
     <div className='topbar'>
       <ul className='align-left'>
         <li><Link to='app' id='brand'>Cylinder</Link></li>
-        <li><input type='text' className='searchBar' placeholder='Search for channels...'></input></li>
+        <li><input type='text' id='channel-search-bar' placeholder='Search for channels...'></input></li>
         </ul>
       <ul className='align-right'>
         <li><Link to='app'>Home</Link></li>

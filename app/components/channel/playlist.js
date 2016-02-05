@@ -21,7 +21,7 @@ var VideoItem = React.createClass({
   render: function () {
     return (
       <div>
-        <div className='object' onClick={this.handleClick} >
+        <div className='object' id='video-box' onClick={this.handleClick} cross='X'>
           <div className='object-imgbox'>
             <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
             <p className='videoitem-title'>{this.props.video.snippet.title}</p>

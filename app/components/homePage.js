@@ -15,14 +15,11 @@ var Home = React.createClass({
         <div id='container'>
           <div id='monitor'>
             <div id='monitorscreen'>
-              <i className='fa fa-plus'> Create your own Channel </i>
+              <i className='fa fa-plus'>Create your own Channel </i>
             </div>
           </div>
         </div>
       </div>
-        <div className='channelsContainer'>
-
-        </div>
     </div>
     )
   }
