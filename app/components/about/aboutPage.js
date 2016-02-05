@@ -16,14 +16,14 @@ var About = React.createClass({
             <li>React Router</li>
             <li>Flux</li>
             <li>Node</li>
-            <li>Webpack</li>
+            <li>Auth0</li>
             <li>Babel</li>
+            <li>Webpack</li>
             <li>MongoDB</li>
             <li>Mongoose</li>
             <li>Mocha</li>
             <li>Chai</li>
             <li>Enzyme</li>
-            <li>Webpack</li>
           </ul>
 
           <p>Made by Albert @caalberts and Min @ongmin</p>
