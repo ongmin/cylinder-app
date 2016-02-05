@@ -167,7 +167,7 @@ div.topbar ul li {
 }
 
 .channelsContainer {
-  background: pink;
+  /*background: pink;*/
   height: 90%;
   width: 100%;
   display: flex;
@@ -231,10 +231,10 @@ div.topbar ul li {
 }
 
 #container-bottom {
-  width: 100%;
+  /*width: 100%;*/
   background-color: lightgrey;
   position: absolute;
-  top: 80vh;
+  top: 90vh;
   height: 100%;
 }
 
@@ -304,6 +304,9 @@ div.topbar ul li {
 #text-searchresult {
   color: white;
   font: 1em Courier, monospace;
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
 }
 
 ::selection {
@@ -316,13 +319,14 @@ div.topbar ul li {
 #toggleButton-float {
   padding: 5px 10px 5px 10px;
   position: absolute;
-  right: 22vw;
+  right: 17vw;
   top: 12vh;
   border-radius: 50px;
+  border: none;
   font-size: 2em;
-  border: 1px solid black;;
-  background-color: #ffc444;
-  box-shadow: 2px 2px 5px #888;
+  /*border: 1px solid black;*/
+  background-color: white;
+  /*box-shadow: 2px 2px 5px #888;*/
 }
 
 #playlist-container {
@@ -335,6 +339,8 @@ div.topbar ul li {
   overflow-y: scroll;
   position: relative;
   padding-top: 10vh;
+  padding-bottom: 10vh;
+  height: 70vh;
 }
 
 .playlist-object {
@@ -410,8 +416,8 @@ div.topbar ul li {
 .container-results {
   display: flex;
   flex: wrap;
-  width: 100%;
-  height: 90vh;
+  width: 100vw;
+  height: 100%;
 }
 
 .object {
