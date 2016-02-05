@@ -50,12 +50,13 @@ export default class Channel extends React.Component {
                 videoId={this.state.currentVideo ? this.state.currentVideo.id.videoId : ''}
                 onEnd={this.state.nextVideo ? Actions.playNext : null}
                 opts={playerOpts} />
+              <button id='toggleButton-float' onClick={this.onClick.bind(this)}><i className='fa fa-plus'></i></button>
             </div>
 
-            <div id='container-rightside'>
-              <button id='toggleButton-float' onClick={::this.onClick}>BUTTON</button>
-              { this.state.childVisible ? <SearchBar id='playlist-searchBar' /> : null }
-            </div>
+            { this.state.childVisible
+              ? <div id='container-rightside'>
+              <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} />
+              </div> : null }
         </div>
 
           <div id='container-bottom'>

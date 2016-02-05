@@ -5,11 +5,13 @@ var React = require('react')
 var About = React.createClass({
   render: function () {
     return (
+
       <div className='bodyContainer'>
-        <h1>About</h1>
+        <div className='contentContainer'>
+        <h2>About</h2>
           <p>Cylinder-app lets you enjoy YouTube in an uncluttered manner</p>
           <p>This application uses the following technologies:
-          <ul>
+          <ul id='techContainer'>
             <li>React</li>
             <li>React Router</li>
             <li>Flux</li>
@@ -21,11 +23,13 @@ var About = React.createClass({
             <li>Mocha</li>
             <li>Chai</li>
             <li>Enzyme</li>
+            <li>Webpack</li>
           </ul>
 
           <p>Made by Albert @caalberts and Min @ongmin</p>
         </p>
       </div>
+    </div>
     )
   }
 })
