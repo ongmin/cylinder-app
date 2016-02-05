@@ -1,27 +1,18 @@
 'use strict'
 
 var React = require('react')
-var Action = ('../../actions/Actions')
-// var SearchApi = require ('../../api/searchApi')
+var Actions = require('../../actions/Actions')
 var Store = require('../../stores/store')
 var SearchResult = require('./searchResult')
 
 var SearchBar = React.createClass({
-  propTypes: {
-    addToPlaylist: React.PropTypes.func
-  },
-
-  updateStateFromStores: function (keywords) {
-    Action.search(keywords)
-  },
-
   getInitialState: function () {
     return {
       results: Store.getAllResults()
     }
   },
 
-  onChange: function (e) {
+  onChange: function () {
     this.setState({results: Store.getAllResults()})
   },
 
@@ -29,45 +20,25 @@ var SearchBar = React.createClass({
     Store.addChangeListener(this.onChange)
   },
 
-  whenUserTypes: function (e) {
-    var text = e.target.value
-    this.setState({text: text})
-    Store.fetchResults(text).then(data => this.setState({results: data}))
+  componentWillUnmount: function () {
+    Store.removeChangeListener(this.onChange)
   },
 
-  handleSubmit: function (e) {
-    e.preventDefault()
-    // var nextItems = []
-    // var nextText = ''
-    // this.setState({results: nextItems, text: nextText})
+  whenUserTypes: function (e) {
+    Actions.search(e.target.value)
   },
 
   render: function () {
     return (
       <div>
-      <p id='text-searchresult'>Search for videos</p>
-      <form id='container-search'
-        action=''
-        method='post'
-        id='search-form'
-        onSubmit={this.handleSubmit}>
-
         <input
           type='text'
           id='search-bar'
           placeholder='Search for videos..'
           ref='searchTextInput'
           onChange={this.whenUserTypes}
-          value={this.state.text} />
-
-        <button
-          className='icon'
-          id='search-button'
-          value='Search'
-          onClick={this.updateStateFromStores}>Search</button>
-        </form>
-
-      <SearchResult results={this.state.results} addToPlaylist={this.props.addToPlaylist} />
+        />
+        <SearchResult results={this.state.results} />
       </div>
       )
   }

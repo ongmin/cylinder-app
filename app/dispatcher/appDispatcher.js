@@ -20,40 +20,63 @@ AppDispatcher.register(function (action) {
   switch (action.actionType) {
 
 // For SearchAPI
-    case ActionTypes.INITIALIZE:
-      Store.getAllResults(action.text)
-      Store.emitChange()
+    // case ActionTypes.INITIALIZE:
+    //   Store.getAllResults(action.text)
+    //   Store.emitChange()
+    //   break
+
+    // For Youtube search
+    case ActionTypes.FETCH_RESULTS:
+      Store.fetchResults(action.text)
       break
 
-    case ActionTypes.GET_RESULTS:
-      Store.getAllResults(action.text)
-      Store.emitChange()
-      break
-
-// For PlaylistAPI
-    case ActionTypes.CREATE_CHANNEL:
-      channels.push(action.name)
-      Store.emitChange()
-      break
-
+    // For Playlist
     case ActionTypes.ADD_VIDEO:
-      playlist.push(action.video)
+      Store.addVideo(action.video)
+      Store.emitChange()
+      break
+    case ActionTypes.PLAY_VIDEO:
+      Store.playVideo(action.video)
+      Store.emitChange()
+      break
+    case ActionTypes.PLAY_NEXT:
+      Store.playNext()
       Store.emitChange()
       break
 
-    case ActionTypes.UPDATE_PLAYLIST:
-      var existingVideo = _.find(results, {id: action.video.id})
-      var existingVideoIndex = _.indexOf(playlist, existingVideo)
-      results.splice(existingVideoIndex, 1, action.video)
+    case ActionTypes.REMOVE_VIDEO:
+      Store.removeVideo(action.video)
       Store.emitChange()
       break
 
-    case ActionTypes.DELETE_PLAYLIST:
-      _.remove(channels, function (playlist) {
-        return action.id === playlist.id
-      })
+    // For authentication
+    case ActionTypes.LOGIN:
+      Store.login(action.token)
       Store.emitChange()
       break
+    case ActionTypes.LOGOUT:
+      Store.logout()
+      Store.emitChange()
+      break
+
+    // case ActionTypes.CREATE_CHANNEL:
+    //   channels.push(action.name)
+    //   Store.emitChange()
+    //   break
+
+    // case ActionTypes.UPDATE_PLAYLIST:
+    //   var existingVideo = _.find(results, {id: action.video.id})
+    //   var existingVideoIndex = _.indexOf(playlist, existingVideo)
+    //   results.splice(existingVideoIndex, 1, action.video)
+    //   Store.emitChange()
+    //   break
+
+    // case ActionTypes.DELETE_PLAYLIST:
+    //   _.remove(channels, function (playlist) {
+    //     return action.id === playlist.id
+    //   })
+    //   Store.emitChange()
+    //   break
 
     default:
       // no op

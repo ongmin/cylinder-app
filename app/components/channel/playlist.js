@@ -2,6 +2,7 @@
 
 var React = require('react')
 var dragula = require('react-dragula')
+var Actions = require('../../actions/Actions')
 
 var VideoItem = React.createClass({
   propTypes: {
@@ -10,21 +11,27 @@ var VideoItem = React.createClass({
   },
 
   handleClick: function (e) {
-    this.props.playVideo(this.props.video.id.videoId)
+    Actions.playVideo(this.props.video)
+  },
+
+  removeVideo: function (e) {
+    Actions.removeVideo(this.props.video)
   },
 
   render: function () {
     return (
-      <div className='object' onClick={this.handleClick} >
-        <div className='object-imgbox'>
-          <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
-          <p className='videoitem-title'>{this.props.video.snippet.title}</p>
+      <div>
+        <div className='object' id='video-box' onClick={this.handleClick} cross='X'>
+          <div className='object-imgbox'>
+            <img src={this.props.video.snippet.thumbnails.default.url} alt={this.props.video.snippet.description} className='videoitem-img-responsive'/>
+            <p className='videoitem-title'>{this.props.video.snippet.title}</p>
+          </div>
+          <div className='object-textbox'>
+            <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
+          </div>
         </div>
-        <div className='object-textbox'>
-          <p className='videoitem-channel-title'>{this.props.video.snippet.channelTitle}</p>
-        </div>
+        <button className='remove-video' onClick={this.removeVideo}>&times;</button>
       </div>
-
     )
   }
 })
@@ -43,7 +50,7 @@ var VideoTable = React.createClass({
   render: function () {
     var items = []
     this.props.videos.forEach((video) => {
-      items.push(<VideoItem video={video} key={video.snippet.title} playVideo={this.props.playVideo} />)
+      items.push(<VideoItem video={video} key={video.snippet.title} />)
     })
     return (
     <div className='container-results'>
@@ -59,16 +66,9 @@ var Playlist = React.createClass({
     playVideo: React.PropTypes.func
   },
 
-  getInitialState: function () {
-    return {
-      videos: [],
-      data: []
-    }
-  },
-
   render: function () {
     return (
-      <VideoTable videos={this.props.playlist} playVideo={this.props.playVideo}/>
+      <VideoTable videos={this.props.playlist} />
     )
   }
 })

@@ -1,3 +1,4 @@
+/* global Auth0Lock */
 'use strict'
 
 // var Dispatcher = require('../dispatcher/appDispatcher')
@@ -14,26 +15,105 @@ var Store = assign({}, EventEmitter.prototype, {
   results: [],
   playlist: [],
   channels: [],
+  currentVideo: null,
+  nextVideo: null,
 
-// For SearchAPI
-  // getInitialData: function () {
-  //
-  // },
+  lock: new Auth0Lock('gm22xoo58OOcB8qLEkg6dcohb6vzQnZo', 'caalberts.auth0.com'),
+  token: null,
 
+  // search youtube api
   fetchResults: function (keywords) {
     return window.fetch('/searchresults/' + keywords)
       .then(res => res.json())
       .then((data) => {
         this.results = data
-        return data
-        // console.log(this.results)
-    })
+        this.emitChange()
+      })
+  },
+  getAllResults: function () {
+    return this.results
   },
 
-  getAllResults: function (text) {
-    // console.log(this.results)
-    // return this.fetchResults(text).then()
-    return this.results
+  // manipulate playlist
+  addVideo: function (video) {
+    this.playlist.push(video)
+    if (!this.currentVideo) this.currentVideo = video
+    else if (!this.nextVideo) this.nextVideo = video
+  },
+  playVideo: function (video) {
+    this.currentVideo = video
+    this.nextVideo = this.playlist[this.playlist.indexOf(video) + 1]
+  },
+  playNext: function () {
+    this.removeVideo(this.currentVideo)
+    this.currentVideo = this.nextVideo
+    this.nextVideo = this.playlist[this.playlist.indexOf(this.currentVideo) + 1]
+  },
+  removeVideo: function (video) {
+    var idx = this.playlist.indexOf(video)
+    this.playlist.splice(idx, 1)
+  },
+
+  // user authentication
+  login: function (token) {
+    if (token) {
+      this.lock.getProfile(token, (err, profile) => {
+        if (err) return console.error('Error loading the Profile', err)
+        else {
+          this.user = profile
+          this.emitChange()
+          window.fetch('/users/' + profile.user_id, {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(profile)
+          }).then(res => {
+            if (res.status === 404) {
+              window.fetch('/users', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(profile)
+              })
+            }
+          })
+        }
+      })
+    } else {
+      this.lock.show({
+        callbackURL: window.location.origin,
+        responseType: 'token'
+      })
+    }
+  },
+  logout: function () {
+    this.user = null
+    window.localStorage.removeItem('userToken')
+  },
+  parseToken: function () {
+    var idToken = window.localStorage.getItem('userToken')
+    var authHash = this.lock.parseHash(window.location.hash)
+    if (!idToken && authHash) {
+      if (authHash.id_token) {
+        idToken = authHash.id_token
+        window.localStorage.setItem('userToken', authHash.id_token)
+      }
+      if (authHash.error) {
+        console.error('Error signing in', authHash)
+        return null
+      }
+    }
+    if (idToken) {
+      this.token = idToken
+      this.login(this.token)
+    }
+  },
+  getToken: function () {
+    return this.token
   },
 
   emitChange: function () {
@@ -46,16 +126,6 @@ var Store = assign({}, EventEmitter.prototype, {
 
   removeChangeListener: function (callback) {
     this.removeListener(CHANGE_EVENT, callback)
-  },
-
-// For PlaylistAPI
-  deleteVideo: function (video) {
-    var idx = this.playlist.indexOf(video)
-    this.playlist.splice(idx, 1)
-  },
-
-  addNewVideo: function (video) {
-    this.playlist.push(video)
   },
 
 // For ChannelAPI
