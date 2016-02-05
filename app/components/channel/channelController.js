@@ -3,15 +3,11 @@
 import React from 'react'
 import Playlist from './playlist'
 import SearchBar from './searchBar'
-import Channel from './channel'
-// var Router = require('react-router')
-// var Link = Router.Link
 
 var ChannelController = React.createClass({
 
-onChange: function () {
-
-},
+  onChange: function () {
+  },
 
   render: function () {
     return (

@@ -1,11 +1,11 @@
 'use strict'
 
 var React = require('react')
+var Actions = require('../../actions/Actions')
 
 var SearchResult = React.createClass({
   propTypes: {
-    results: React.PropTypes.array,
-    addToPlaylist: React.PropTypes.func
+    results: React.PropTypes.array
   },
 
   render: function () {
@@ -22,12 +22,12 @@ var SearchResult = React.createClass({
     })
 
     return (
-      <div className='videoResult' id='playlist-container'>{videosDOM}</div>
+      <div className='videoResult' id='playlist-container'><p id='text-searchresult'>Search Results:</p>{videosDOM}</div>
     )
   },
 
   handleClick: function (i) {
-    this.props.addToPlaylist(this.props.results[i])
+    Actions.addVideo(this.props.results[i])
   }
 })
 
