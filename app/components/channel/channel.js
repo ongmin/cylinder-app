@@ -55,7 +55,7 @@ export default class Channel extends React.Component {
 
             { this.state.childVisible
               ? <div id='container-rightside'>
-              <SearchBar id='playlist-searchBar' addToPlaylist={this.addToPlaylist.bind(this)} />
+              <SearchBar id='playlist-searchBar' />
               </div> : null }
         </div>
 
