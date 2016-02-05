@@ -20,10 +20,9 @@ var Authenticate = React.createClass({
   },
 
   render: function () {
-    console.log(this.props.profile)
     if (this.props.profile) {
       return (
-          <button className='button-loginout' onClick={this.logout}>Sign Out</button>
+          <button className='button-loginout' onClick={this.logout}>{this.props.profile.nickname} Sign Out</button>
       )
     } else {
       return (

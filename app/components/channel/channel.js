@@ -12,7 +12,11 @@ export default class Channel extends React.Component {
     super(props)
     this.state = {
       playlist: Store.playlist,
-      currentVideo: '',
+      currentVideo: {
+        id: {
+          videoId: 'DfG6VKnjrVw'
+        }
+      },
       childVisible: true
     }
   }

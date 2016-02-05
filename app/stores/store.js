@@ -37,6 +37,8 @@ var Store = assign({}, EventEmitter.prototype, {
   // manipulate playlist
   addVideo: function (video) {
     this.playlist.push(video)
+    if (!this.currentVideo) this.currentVideo = video
+    else if (!this.nextVideo) this.nextVideo = video
   },
   playVideo: function (video) {
     this.currentVideo = video
