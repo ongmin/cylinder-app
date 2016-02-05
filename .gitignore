@@ -1,7 +1,8 @@
 node_modules/
 dist/
+dist_server
 coverage/
 .DS_Store
 *.dist.js
-.log
+*.log.*
 coverage/
