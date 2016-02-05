@@ -28,6 +28,7 @@ var SearchResult = React.createClass({
 
   handleClick: function (i) {
     Actions.addVideo(this.props.results[i])
+    console.dir(this.props.results[i])
   }
 })
 
